@@ -5,13 +5,18 @@
 #include <string>
 
 int main(int argc, char** argv) {
+    std::string fileName = argv[1];
 
     Lexer* lexer = new Lexer();
 
-    std::ifstream inputFile;
     std::string nextLine;
-    inputFile.open("test.txt");
-    if (!inputFile.is_open()) {
+    std::ifstream inputFile;
+    inputFile.open(fileName);
+    //inputFile.open("test.txt");
+    if (inputFile.is_open()) {
+        std::cout << "Reading from file" << std::endl;
+    }
+    else {
         std::cout << "Could not open file" << std::endl;
     }
 
