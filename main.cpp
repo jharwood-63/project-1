@@ -12,7 +12,6 @@ int main(int argc, char** argv) {
     std::string nextLine;
     std::ifstream inputFile;
     inputFile.open(fileName);
-    //inputFile.open("test.txt");
     if (inputFile.is_open()) {
         std::cout << "Reading from file" << std::endl;
     }
