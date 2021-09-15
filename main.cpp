@@ -53,7 +53,7 @@ void testMethod() {
 }
 
 int main(int argc, char** argv) {
-    std::string fileName = "test.txt";
+    std::string fileName = argv[1];
     std::string input;
 
     Lexer* lexer = new Lexer();
