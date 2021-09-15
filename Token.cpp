@@ -34,4 +34,5 @@ std::string Token::tokenToString(TokenType tokenType) {
         case TokenType::EOF_TYPE: return "EOF"; break;
         case TokenType::UNDEFINED: return "UNDEFINED";
     }
+    return "UNDEFINED";
 }
