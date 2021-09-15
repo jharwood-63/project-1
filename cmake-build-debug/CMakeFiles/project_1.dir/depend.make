@@ -11,15 +11,27 @@ CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj: ../ColonDashAutomaton.cpp
 CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj: ../ColonDashAutomaton.h
 CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj: ../Automaton.h
+CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj: ../EOFAutomaton.cpp
+CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj: ../EOFAutomaton.h
+CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj: ../Token.h
+
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../ColonAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../ColonDashAutomaton.h
+CMakeFiles/project_1.dir/Lexer.cpp.obj: ../EOFAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../Lexer.cpp
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../Lexer.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../Token.h
+CMakeFiles/project_1.dir/Lexer.cpp.obj: ../UndefinedAutomaton.h
 
 CMakeFiles/project_1.dir/Token.cpp.obj: ../Token.cpp
 CMakeFiles/project_1.dir/Token.cpp.obj: ../Token.h
+
+CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../Automaton.h
+CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../Token.h
+CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../UndefinedAutomaton.cpp
+CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../UndefinedAutomaton.h
 
 CMakeFiles/project_1.dir/main.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Lexer.h

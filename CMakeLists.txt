@@ -15,4 +15,6 @@ add_executable(project_1
         Lexer.h
         main.cpp
         Token.cpp
-        Token.h)
+        Token.h
+        UndefinedAutomaton.cpp
+        UndefinedAutomaton.h EOFAutomaton.cpp EOFAutomaton.h)

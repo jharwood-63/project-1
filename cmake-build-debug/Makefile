@@ -196,6 +196,33 @@ ColonDashAutomaton.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.s
 .PHONY : ColonDashAutomaton.cpp.s
 
+EOFAutomaton.obj: EOFAutomaton.cpp.obj
+
+.PHONY : EOFAutomaton.obj
+
+# target to build an object file
+EOFAutomaton.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj
+.PHONY : EOFAutomaton.cpp.obj
+
+EOFAutomaton.i: EOFAutomaton.cpp.i
+
+.PHONY : EOFAutomaton.i
+
+# target to preprocess a source file
+EOFAutomaton.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/EOFAutomaton.cpp.i
+.PHONY : EOFAutomaton.cpp.i
+
+EOFAutomaton.s: EOFAutomaton.cpp.s
+
+.PHONY : EOFAutomaton.s
+
+# target to generate assembly for a file
+EOFAutomaton.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/EOFAutomaton.cpp.s
+.PHONY : EOFAutomaton.cpp.s
+
 Lexer.obj: Lexer.cpp.obj
 
 .PHONY : Lexer.obj
@@ -250,6 +277,33 @@ Token.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Token.cpp.s
 .PHONY : Token.cpp.s
 
+UndefinedAutomaton.obj: UndefinedAutomaton.cpp.obj
+
+.PHONY : UndefinedAutomaton.obj
+
+# target to build an object file
+UndefinedAutomaton.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj
+.PHONY : UndefinedAutomaton.cpp.obj
+
+UndefinedAutomaton.i: UndefinedAutomaton.cpp.i
+
+.PHONY : UndefinedAutomaton.i
+
+# target to preprocess a source file
+UndefinedAutomaton.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.i
+.PHONY : UndefinedAutomaton.cpp.i
+
+UndefinedAutomaton.s: UndefinedAutomaton.cpp.s
+
+.PHONY : UndefinedAutomaton.s
+
+# target to generate assembly for a file
+UndefinedAutomaton.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.s
+.PHONY : UndefinedAutomaton.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -292,12 +346,18 @@ help:
 	@echo ... ColonDashAutomaton.obj
 	@echo ... ColonDashAutomaton.i
 	@echo ... ColonDashAutomaton.s
+	@echo ... EOFAutomaton.obj
+	@echo ... EOFAutomaton.i
+	@echo ... EOFAutomaton.s
 	@echo ... Lexer.obj
 	@echo ... Lexer.i
 	@echo ... Lexer.s
 	@echo ... Token.obj
 	@echo ... Token.i
 	@echo ... Token.s
+	@echo ... UndefinedAutomaton.obj
+	@echo ... UndefinedAutomaton.i
+	@echo ... UndefinedAutomaton.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

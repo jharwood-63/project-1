@@ -97,6 +97,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/ColonDashAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/EOFAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/EOFAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Lexer.cpp">
 			<Option target="project_1"/>
 		</Unit>
@@ -107,6 +113,12 @@
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Token.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/UndefinedAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/UndefinedAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/main.cpp">

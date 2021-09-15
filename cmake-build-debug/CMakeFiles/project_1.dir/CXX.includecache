@@ -10,6 +10,32 @@ C:/Users/jharw/CS236/project-1/Automaton.h
 Token.h
 C:/Users/jharw/CS236/project-1/Token.h
 
+C:/Users/jharw/CS236/project-1/ColonAutomaton.h
+Automaton.h
+C:/Users/jharw/CS236/project-1/Automaton.h
+
+C:/Users/jharw/CS236/project-1/ColonDashAutomaton.h
+Automaton.h
+C:/Users/jharw/CS236/project-1/Automaton.h
+
+C:/Users/jharw/CS236/project-1/EOFAutomaton.h
+Automaton.h
+C:/Users/jharw/CS236/project-1/Automaton.h
+
+C:/Users/jharw/CS236/project-1/Lexer.cpp
+Lexer.h
+C:/Users/jharw/CS236/project-1/Lexer.h
+ColonAutomaton.h
+C:/Users/jharw/CS236/project-1/ColonAutomaton.h
+ColonDashAutomaton.h
+C:/Users/jharw/CS236/project-1/ColonDashAutomaton.h
+UndefinedAutomaton.h
+C:/Users/jharw/CS236/project-1/UndefinedAutomaton.h
+EOFAutomaton.h
+C:/Users/jharw/CS236/project-1/EOFAutomaton.h
+iostream
+-
+
 C:/Users/jharw/CS236/project-1/Lexer.h
 vector
 -
@@ -22,15 +48,7 @@ C:/Users/jharw/CS236/project-1/Token.h
 string
 -
 
-C:/Users/jharw/CS236/project-1/main.cpp
-Lexer.h
-C:/Users/jharw/CS236/project-1/Lexer.h
-iostream
--
-fstream
--
-sstream
--
-string
--
+C:/Users/jharw/CS236/project-1/UndefinedAutomaton.h
+Automaton.h
+C:/Users/jharw/CS236/project-1/Automaton.h
 
