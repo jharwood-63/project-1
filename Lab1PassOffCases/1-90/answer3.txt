@@ -1,0 +1,19 @@
+(COMMENT,"# COPYRIGHT © BRIGHAM YOUNG UNIVERSITY CS 236",1)
+(COMMENT,"# FOR USE ONLY DURING SPRING 2021 SEMESTER",2)
+(STRING,"'
+''
+''''
+''''''
+''''''''
+''''''''''
+''''''''''''
+''''''''''''''
+''''''''''''''''
+'",3)
+(STRING,"' '' '",14)
+(UNDEFINED,"'
+'' 
+'' ''
+",15)
+(EOF,"",18)
+Total Tokens = 6

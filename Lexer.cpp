@@ -107,12 +107,12 @@ void Lexer::Run(std::string& input) {
             input.erase(0, maxRead);
         }
     }
-    Token* endToken = end->CreateToken("EOF", lineNumber);
+    Token* endToken = end->CreateToken("", lineNumber);
     tokens.push_back(endToken);
     for (unsigned int i = 0; i < tokens.size(); i++) {
         std::cout << tokens.at(i)->toString();
     }
-    std::cout << "Total Tokens: " << tokens.size();
+    std::cout << "Total Tokens = " << tokens.size() << std::endl;
     //*/
 }
 
