@@ -33,6 +33,8 @@ Lexer::~Lexer() {
     for (int i = 0; i < tokens.size(); i++) {
         delete tokens.at(i);
     }
+    automata.clear();
+    tokens.clear();
 }
 
 void Lexer::CreateAutomata() {
@@ -115,11 +117,15 @@ void Lexer::Run(std::string& input) {
     }
     Token* endToken = end->CreateToken("", lineNumber);
     tokens.push_back(endToken);
+    toString(tokens);
+    //*/
+}
+
+void Lexer::toString(std::vector<Token *> tokens) {
     for (unsigned int i = 0; i < tokens.size(); i++) {
         std::cout << tokens.at(i)->toString();
     }
     std::cout << "Total Tokens = " << tokens.size();
-    //*/
 }
 
 void Lexer::compareID(Automaton* &maxAutomaton, std::string tokenString) {
