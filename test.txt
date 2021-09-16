@@ -1,2 +1,5 @@
-'Let's eat
-12potato
+Queries
+Schemes
+Facts
+Rules
+Rule

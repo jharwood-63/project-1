@@ -14,6 +14,7 @@ private:
 
     // TODO: add any other private methods here (if needed)
 
+    void compareID(Automaton* &MaxAutomaton, std::string tokenString);
 public:
     Lexer();
     ~Lexer();

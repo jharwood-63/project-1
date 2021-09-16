@@ -89,6 +89,7 @@ void Lexer::Run(std::string& input) {
             // Here is the "Max" part of the algorithm
             if (maxRead > 0) {
                 tokenString = input.substr(0, maxRead);
+                compareID(maxAutomaton, tokenString);
                 Token *newToken = maxAutomaton->CreateToken(tokenString, lineNumber);
                 lineNumber += maxAutomaton->NewLinesRead();
                 tokens.push_back(newToken);
@@ -113,4 +114,19 @@ void Lexer::Run(std::string& input) {
     }
     std::cout << "Total Tokens: " << tokens.size();
     //*/
+}
+
+void Lexer::compareID(Automaton* &maxAutomaton, std::string tokenString) {
+    if (tokenString == "Schemes") {
+        maxAutomaton = automata.at(16);
+    }
+    else if (tokenString == "Facts") {
+        maxAutomaton = automata.at(11);
+    }
+    else if (tokenString == "Rules") {
+        maxAutomaton = automata.at(15);
+    }
+    else if (tokenString == "Queries") {
+        maxAutomaton = automata.at(14);
+    }
 }
