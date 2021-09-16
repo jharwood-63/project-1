@@ -1,11 +1,2 @@
-#| this
-should work|#
-
-#|
-and
-so
-should
-this
-|#
-
-#|11|#
+'Let's eat
+12potato

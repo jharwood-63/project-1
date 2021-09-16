@@ -10,15 +10,27 @@ C:/Users/jharw/CS236/project-1/Automaton.h
 Token.h
 C:/Users/jharw/CS236/project-1/Token.h
 
-C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.cpp
-BlockCommentAutomaton.h
-C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.h
-
-C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.h
+C:/Users/jharw/CS236/project-1/Lexer.h
+vector
+-
 Automaton.h
 C:/Users/jharw/CS236/project-1/Automaton.h
+Token.h
+C:/Users/jharw/CS236/project-1/Token.h
 
 C:/Users/jharw/CS236/project-1/Token.h
 string
+-
+
+C:/Users/jharw/CS236/project-1/main.cpp
+Lexer.h
+C:/Users/jharw/CS236/project-1/Lexer.h
+iostream
+-
+fstream
+-
+string
+-
+vector
 -
 

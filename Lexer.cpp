@@ -43,7 +43,7 @@ void Lexer::CreateAutomata() {
     automata.push_back(new Right_ParenAutomaton());
     automata.push_back(new FactsAutomaton());
     automata.push_back(new CommentAutomaton());
-    //automata.push_back(new IdAutomaton());
+    automata.push_back(new IdAutomaton());
     automata.push_back(new QueriesAutomaton());
     automata.push_back(new RulesAutomaton());
     automata.push_back(new SchemesAutomaton());

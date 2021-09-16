@@ -6,6 +6,7 @@
 #define PROJECT_1_IDAUTOMATON_H
 
 #include "Automaton.h"
+#include <cctype>
 
 class IdAutomaton : public Automaton
 {
