@@ -9,7 +9,7 @@ Token::Token(TokenType type, std::string description, int line) {
 std::string Token::toString() {
     std::string tokenString = "";
     std::string token = tokenToString(type);
-    tokenString += "(" + token + ",\"" + description + "\"," + std::to_string(line) + ")";
+    tokenString += "(" + token + ",\"" + description + "\"," + std::to_string(line) + ")\n";
     return tokenString;
 }
 

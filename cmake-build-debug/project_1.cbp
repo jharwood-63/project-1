@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/jharw/CS236/project-1/AddAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/AddAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Automaton.h">
 			<Option target="project_1"/>
 		</Unit>
@@ -97,16 +103,94 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/ColonDashAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/CommaAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/CommaAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/CommentAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/CommentAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/EOFAutomaton.cpp">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/EOFAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/FactsAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/FactsAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/IdAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/IdAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Left_ParenAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Left_ParenAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Lexer.cpp">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Lexer.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/MultiplyAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/MultiplyAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/PeriodAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/PeriodAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Q_MarkAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Q_MarkAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/QueriesAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/QueriesAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Right_ParenAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Right_ParenAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/RulesAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/RulesAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/SchemesAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/SchemesAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/StringAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/StringAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Token.cpp">
