@@ -17,6 +17,7 @@
 #include "RulesAutomaton.h"
 #include "SchemesAutomaton.h"
 #include "StringAutomaton.h"
+#include "BlockCommentAutomaton.h"
 #include <iostream>
 
 
@@ -41,12 +42,13 @@ void Lexer::CreateAutomata() {
     automata.push_back(new Q_MarkAutomaton());
     automata.push_back(new Right_ParenAutomaton());
     automata.push_back(new FactsAutomaton());
-    //automata.push_back(new CommentAutomaton());
+    automata.push_back(new CommentAutomaton());
     //automata.push_back(new IdAutomaton());
     automata.push_back(new QueriesAutomaton());
     automata.push_back(new RulesAutomaton());
-    //automata.push_back(new SchemesAutomaton());
-    //automata.push_back(new StringAutomaton());
+    automata.push_back(new SchemesAutomaton());
+    automata.push_back(new StringAutomaton());
+    automata.push_back(new BlockCommentAutomaton());
     // TODO: Add the other needed automata here
 }
 
@@ -109,5 +111,6 @@ void Lexer::Run(std::string& input) {
     for (unsigned int i = 0; i < tokens.size(); i++) {
         std::cout << tokens.at(i)->toString();
     }
+    std::cout << "Total Tokens: " << tokens.size();
     //*/
 }

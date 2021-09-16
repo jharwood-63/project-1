@@ -6,6 +6,11 @@ CMakeFiles/project_1.dir/AddAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/AddAutomaton.h
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj
+ C:/Users/jharw/CS236/project-1/Automaton.h
+ C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.cpp
+ C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.h
+ C:/Users/jharw/CS236/project-1/Token.h
 CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/ColonAutomaton.cpp
@@ -49,6 +54,7 @@ CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj
 CMakeFiles/project_1.dir/Lexer.cpp.obj
  C:/Users/jharw/CS236/project-1/AddAutomaton.h
  C:/Users/jharw/CS236/project-1/Automaton.h
+ C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.h
  C:/Users/jharw/CS236/project-1/ColonAutomaton.h
  C:/Users/jharw/CS236/project-1/ColonDashAutomaton.h
  C:/Users/jharw/CS236/project-1/CommaAutomaton.h

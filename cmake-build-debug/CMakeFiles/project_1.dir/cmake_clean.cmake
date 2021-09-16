@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/project_1.dir/AddAutomaton.cpp.obj"
+  "CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj"
   "CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj"
   "CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj"
   "CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj"

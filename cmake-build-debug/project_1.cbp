@@ -91,6 +91,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/Automaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/ColonAutomaton.cpp">
 			<Option target="project_1"/>
 		</Unit>

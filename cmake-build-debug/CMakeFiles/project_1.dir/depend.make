@@ -6,6 +6,11 @@ CMakeFiles/project_1.dir/AddAutomaton.cpp.obj: ../AddAutomaton.h
 CMakeFiles/project_1.dir/AddAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/AddAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj: ../Automaton.h
+CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj: ../BlockCommentAutomaton.cpp
+CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj: ../BlockCommentAutomaton.h
+CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj: ../Token.h
+
 CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj: ../ColonAutomaton.cpp
 CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj: ../ColonAutomaton.h
@@ -48,6 +53,7 @@ CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj: ../Token.h
 
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../AddAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../Automaton.h
+CMakeFiles/project_1.dir/Lexer.cpp.obj: ../BlockCommentAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../ColonAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../ColonDashAutomaton.h
 CMakeFiles/project_1.dir/Lexer.cpp.obj: ../CommaAutomaton.h

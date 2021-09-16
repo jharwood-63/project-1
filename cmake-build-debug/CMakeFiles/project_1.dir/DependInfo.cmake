@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/jharw/CS236/project-1/AddAutomaton.cpp" "C:/Users/jharw/CS236/project-1/cmake-build-debug/CMakeFiles/project_1.dir/AddAutomaton.cpp.obj"
+  "C:/Users/jharw/CS236/project-1/BlockCommentAutomaton.cpp" "C:/Users/jharw/CS236/project-1/cmake-build-debug/CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj"
   "C:/Users/jharw/CS236/project-1/ColonAutomaton.cpp" "C:/Users/jharw/CS236/project-1/cmake-build-debug/CMakeFiles/project_1.dir/ColonAutomaton.cpp.obj"
   "C:/Users/jharw/CS236/project-1/ColonDashAutomaton.cpp" "C:/Users/jharw/CS236/project-1/cmake-build-debug/CMakeFiles/project_1.dir/ColonDashAutomaton.cpp.obj"
   "C:/Users/jharw/CS236/project-1/CommaAutomaton.cpp" "C:/Users/jharw/CS236/project-1/cmake-build-debug/CMakeFiles/project_1.dir/CommaAutomaton.cpp.obj"

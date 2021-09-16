@@ -169,6 +169,33 @@ AddAutomaton.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/AddAutomaton.cpp.s
 .PHONY : AddAutomaton.cpp.s
 
+BlockCommentAutomaton.obj: BlockCommentAutomaton.cpp.obj
+
+.PHONY : BlockCommentAutomaton.obj
+
+# target to build an object file
+BlockCommentAutomaton.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.obj
+.PHONY : BlockCommentAutomaton.cpp.obj
+
+BlockCommentAutomaton.i: BlockCommentAutomaton.cpp.i
+
+.PHONY : BlockCommentAutomaton.i
+
+# target to preprocess a source file
+BlockCommentAutomaton.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.i
+.PHONY : BlockCommentAutomaton.cpp.i
+
+BlockCommentAutomaton.s: BlockCommentAutomaton.cpp.s
+
+.PHONY : BlockCommentAutomaton.s
+
+# target to generate assembly for a file
+BlockCommentAutomaton.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/BlockCommentAutomaton.cpp.s
+.PHONY : BlockCommentAutomaton.cpp.s
+
 ColonAutomaton.obj: ColonAutomaton.cpp.obj
 
 .PHONY : ColonAutomaton.obj
@@ -721,6 +748,9 @@ help:
 	@echo ... AddAutomaton.obj
 	@echo ... AddAutomaton.i
 	@echo ... AddAutomaton.s
+	@echo ... BlockCommentAutomaton.obj
+	@echo ... BlockCommentAutomaton.i
+	@echo ... BlockCommentAutomaton.s
 	@echo ... ColonAutomaton.obj
 	@echo ... ColonAutomaton.i
 	@echo ... ColonAutomaton.s

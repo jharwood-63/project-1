@@ -1,7 +1,1 @@
-: !  :- +  . ? (
-) *   ,
-Facts
-Queries
-Rules
-
-
+'Testing strings, this should work'
