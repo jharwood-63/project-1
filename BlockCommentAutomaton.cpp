@@ -48,6 +48,9 @@ void BlockCommentAutomaton::S2(const std::string &input) {
 
 void BlockCommentAutomaton::S3(const std::string &input) {
     int stringSize = input.size();
+    if (input[index] == '\n') {
+        newLines++;
+    }
     if (input[index] == '#') {
         inputRead++;
     }
