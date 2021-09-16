@@ -1,1 +1,11 @@
-'Testing strings, this should work'
+#| this
+should work|#
+
+#|
+and
+so
+should
+this
+|#
+
+#|11|#

@@ -90,7 +90,7 @@ void Lexer::Run(std::string& input) {
             if (maxRead > 0) {
                 tokenString = input.substr(0, maxRead);
                 Token *newToken = maxAutomaton->CreateToken(tokenString, lineNumber);
-                //lineNumber += maxAutomaton->NewLinesRead();
+                lineNumber += maxAutomaton->NewLinesRead();
                 tokens.push_back(newToken);
             }
                 // No automaton accepted input

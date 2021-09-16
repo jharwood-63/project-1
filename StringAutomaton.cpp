@@ -17,6 +17,9 @@ void StringAutomaton::S0(const std::string& input) {
 
 void StringAutomaton::S1(const std::string& input) {
     int stringSize = input.size();
+    if (input[index] == '\n') {
+        newLines++;
+    }
     if (input[index] == '\'') {
         inputRead++;
         index++;
@@ -33,15 +36,15 @@ void StringAutomaton::S1(const std::string& input) {
 }
 
 void StringAutomaton::S2(const std::string& input) {
-    if (input[index] != '\'' || input[index] == EOF) {
-        inputRead++;
+    if (input[index] != '\'') {
+        //do nothing its a string
     }
-    else if (input[index] == '\'') {
+    else if (input[index] == EOF) {
         inputRead++;
-        index++;
-        S2(input);
     }
     else {
+        inputRead++;
+        index++;
         S1(input);
     }
 }
