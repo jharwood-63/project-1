@@ -21,6 +21,8 @@ public:
     ~Lexer();
 
     void Run(std::string& input);
+
+    std::vector<Token*> getTokens();
     
     // TODO: add other public methods here
 

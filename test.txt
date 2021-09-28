@@ -1,5 +1,1 @@
-Queries
-Schemes
-Facts
-Rules
-Rule
+Schemes:

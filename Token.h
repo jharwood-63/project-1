@@ -16,11 +16,13 @@ private:
     std::string description;
     int line;
 
-    std::string tokenToString(TokenType tokenType);
+
 
 public:
     Token(TokenType type, std::string description, int line);
+    std::string tokenToString(TokenType tokenType);
     std::string toString();
+    TokenType getType();
     // TODO: add other needed methods
 };
 

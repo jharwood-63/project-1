@@ -36,3 +36,7 @@ std::string Token::tokenToString(TokenType tokenType) {
     }
     return "UNDEFINED";
 }
+
+TokenType Token::getType() {
+    return type;
+}

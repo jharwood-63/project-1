@@ -142,3 +142,7 @@ void Lexer::compareID(Automaton* &maxAutomaton, std::string tokenString) {
         maxAutomaton = automata.at(14);
     }
 }
+
+std::vector<Token*> Lexer::getTokens() {
+    return tokens;
+}
