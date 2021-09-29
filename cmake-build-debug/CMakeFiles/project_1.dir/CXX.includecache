@@ -6,19 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/jharw/CS236/project-1/Automaton.h
-Token.h
-C:/Users/jharw/CS236/project-1/Token.h
-
 C:/Users/jharw/CS236/project-1/DatalogProgram.h
-
-C:/Users/jharw/CS236/project-1/Lexer.h
-vector
--
-Automaton.h
-C:/Users/jharw/CS236/project-1/Automaton.h
-Token.h
-C:/Users/jharw/CS236/project-1/Token.h
 
 C:/Users/jharw/CS236/project-1/Parser.cpp
 Parser.h
@@ -36,19 +24,5 @@ vector
 
 C:/Users/jharw/CS236/project-1/Token.h
 string
--
-
-C:/Users/jharw/CS236/project-1/main.cpp
-Lexer.h
-C:/Users/jharw/CS236/project-1/Lexer.h
-Parser.h
-C:/Users/jharw/CS236/project-1/Parser.h
-iostream
--
-fstream
--
-string
--
-vector
 -
 

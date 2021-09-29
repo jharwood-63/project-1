@@ -20,20 +20,20 @@ private:
     void parseRuleList(std::vector<Token*> &tokens);
     void parseQueryList(std::vector<Token*> &tokens);
     void parseScheme(std::vector<Token*> &tokens);
-    void parseFact();
-    void parseRule();
+    void parseFact(std::vector<Token*> &tokens);
+    void parseRule(std::vector<Token*> &tokens);
     void parseQuery(std::vector<Token*> &tokens);
-    void parseHeadPredicate();
-    void parsePredicate();
-    void parsePredicateList();
-    void parseParameterList();
-    void parseStringList();
-    void parseIdList();
-    void parseParameter();
+    void parseHeadPredicate(std::vector<Token*> &tokens);
+    void parsePredicate(std::vector<Token*> &tokens);
+    void parsePredicateList(std::vector<Token*> &tokens);
+    void parseParameterList(std::vector<Token*> &tokens);
+    void parseStringList(std::vector<Token*> &tokens);
+    void parseIdList(std::vector<Token*> &tokens);
+    void parseParameter(std::vector<Token*> &tokens);
 
     bool Match(TokenType type, TokenType matchingType);
     void checkTerminals(TokenType type, std::vector<Token*> &tokens);
-    void checkComments(std::vector<Token*> &tokens);
+    void filterComments(std::vector<Token*> &tokens);
 };
 
 

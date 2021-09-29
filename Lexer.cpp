@@ -117,8 +117,7 @@ void Lexer::Run(std::string& input) {
     }
     Token* endToken = end->CreateToken("", lineNumber);
     tokens.push_back(endToken);
-    toString(tokens);
-    //*/
+    //toString(tokens);
 }
 
 void Lexer::toString(std::vector<Token *> tokens) {
