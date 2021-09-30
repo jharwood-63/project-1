@@ -40,3 +40,7 @@ std::string Token::tokenToString(TokenType tokenType) {
 TokenType Token::getType() {
     return type;
 }
+
+std::string Token::getDescription() {
+    return description;
+}

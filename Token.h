@@ -23,6 +23,7 @@ public:
     std::string tokenToString(TokenType tokenType);
     std::string toString();
     TokenType getType();
+    std::string getDescription();
     // TODO: add other needed methods
 };
 

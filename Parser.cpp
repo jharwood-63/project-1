@@ -7,15 +7,16 @@
 
 void Parser::parse(std::vector<Token *> &tokens) {
     filterComments(tokens);
+    DatalogProgram* program = new DatalogProgram();
     try {
-        parseDatalogProgram(tokens);
+        parseDatalogProgram(tokens, program);
     }
     catch(Token* error) {
-        std::cout << "Failure!" << std::endl;
-        std::cout << error->toString();
+        std::cout << "Failure!\n\t" << error->toString() << std::endl;
     }
     if (tokens.empty()) {
         std::cout << "Success!" << std::endl;
+        program->toString();
     }
 }
 
@@ -56,146 +57,202 @@ void Parser::filterComments(std::vector<Token *> &tokens) {
     }
 }
 
-void Parser::parseDatalogProgram(std::vector<Token *> &tokens) {
+void Parser::parseDatalogProgram(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //SCHEMES & COLON
     checkTerminals(TokenType::SCHEMES, tokens);
     //scheme
-    parseScheme(tokens);
+    parseScheme(tokens, program);
     //schemeList
-    parseSchemeList(tokens);
+    parseSchemeList(tokens, program);
     //FACTS & COLON
     checkTerminals(TokenType::FACTS, tokens);
     //factList
-    parseFactList(tokens);
+    parseFactList(tokens, program);
     //RULES & COLON
     checkTerminals(TokenType::RULES, tokens);
     //ruleList
-    parseRuleList(tokens);
+    parseRuleList(tokens, program);
     //QUERIES & COLON
     checkTerminals(TokenType::QUERIES, tokens);
     //query
-    parseQuery(tokens);
+    parseQuery(tokens, program);
     //queryList
-    parseQueryList(tokens);
+    parseQueryList(tokens, program);
     //EOF
     checkTerminals(TokenType::EOF_TYPE, tokens);
 }
 
-void Parser::parseScheme(std::vector<Token *> &tokens) {
+void Parser::parseScheme(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //ID
+    Predicate* newScheme = new Predicate(tokens.at(0)->getDescription());
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //ID
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    newScheme->addParameters(newParameter);
     checkTerminals(TokenType::ID, tokens);
     //idList
-    parseIdList(tokens);
+    parseIdList(tokens, newScheme);
     //RIGHT_PAREN
     checkTerminals(TokenType::RIGHT_PAREN, tokens);
+    program->schemes.push_back(newScheme);
 }
 
-void Parser::parseIdList(std::vector<Token *> &tokens) {
+void Parser::parseIdList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
+    //COMMA
+    checkTerminals(TokenType::COMMA, tokens);
+    //ID
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    newPredicate->addParameters(newParameter);
+    checkTerminals(TokenType::ID, tokens);
+    //idList
+    if (tokens.at(0)->getType() == TokenType::COMMA) {
+        parseIdList(tokens, newPredicate);
+    }
+    //lambda
+}
+/*
+void Parser::parseRuleIdList(std::vector<Token *> &tokens) {
     //COMMA
     checkTerminals(TokenType::COMMA, tokens);
     //ID
     checkTerminals(TokenType::ID, tokens);
     //idList
     if (tokens.at(0)->getType() == TokenType::COMMA) {
-        parseIdList(tokens);
+        parseRuleIdList(tokens);
     }
-    //lambda
 }
-
-void Parser::parseSchemeList(std::vector<Token*> &tokens) {
+*/
+void Parser::parseSchemeList(std::vector<Token*> &tokens, DatalogProgram* &program) {
     if (tokens.at(0)->getType() == TokenType::ID) {
-        parseScheme(tokens);
-        parseSchemeList(tokens);
+        parseScheme(tokens, program);
+        parseSchemeList(tokens, program);
     }
     //Lambda
 }
 
-void Parser::parseFactList(std::vector<Token *> &tokens) {
+void Parser::parseFactList(std::vector<Token *> &tokens, DatalogProgram* &program) {
     if (tokens.at(0)->getType() == TokenType::ID) {
-        parseFact(tokens);
-        parseFactList(tokens);
+        parseFact(tokens, program);
+        parseFactList(tokens, program);
     }
     //Lambda
 }
 
-void Parser::parseFact(std::vector<Token *> &tokens) {
+void Parser::parseFact(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //ID
+    Predicate* newFact = new Predicate(tokens.at(0)->getDescription());
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //STRING
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    newFact->addParameters(newParameter);
     checkTerminals(TokenType::STRING, tokens);
     //stringList
-    parseStringList(tokens);
+    parseStringList(tokens, newFact);
     //RIGHT_PAREN
     checkTerminals(TokenType::RIGHT_PAREN, tokens);
     //PERIOD
     checkTerminals(TokenType::PERIOD, tokens);
+    program->facts.push_back(newFact);
 }
 
-void Parser::parseStringList(std::vector<Token *> &tokens) {
+void Parser::parseStringList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         //COMMA
         checkTerminals(TokenType::COMMA, tokens);
         //STRING
+        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+        newPredicate->addParameters(newParameter);
         checkTerminals(TokenType::STRING, tokens);
         //stringList
-        parseStringList(tokens);
+        parseStringList(tokens, newPredicate);
     }
     //Lambda
 }
 
-void Parser::parseRuleList(std::vector<Token *> &tokens) {
+void Parser::parseRuleList(std::vector<Token *> &tokens, DatalogProgram* &program) {
     if (tokens.at(0)->getType() == TokenType::ID) {
-        parseRule(tokens);
-        parseRuleList(tokens);
+        parseRule(tokens, program);
+        parseRuleList(tokens, program);
     }
     //Lambda
 }
 
-void Parser::parseRule(std::vector<Token *> &tokens) {
+void Parser::parseRule(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //headPredicate
-    parseHeadPredicate(tokens);
+    Rule* newRule = new Rule();
+    parseHeadPredicate(tokens, newRule);
     //COLON_DASH
     checkTerminals(TokenType::COLON_DASH, tokens);
     //predicate
-    parsePredicate(tokens);
+    parseRulePredicate(tokens, newRule);
     //predicateList
-    parsePredicateList(tokens);
+    parsePredicateList(tokens, newRule);
     //PERIOD
     checkTerminals(TokenType::PERIOD, tokens);
+    program->rules.push_back(newRule);
 }
 
-void Parser::parseHeadPredicate(std::vector<Token *> &tokens) {
+void Parser::parseHeadPredicate(std::vector<Token *> &tokens, Rule* &newRule) {
     //ID
+    Predicate* headPredicate = new Predicate(tokens.at(0)->getDescription());
+    newRule->setHeadPredicate(headPredicate);
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //ID
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    headPredicate->addParameters(newParameter);
     checkTerminals(TokenType::ID, tokens);
     //idList
-    parseIdList(tokens);
+    parseIdList(tokens, headPredicate);
     //RIGHT_PAREN
     checkTerminals(TokenType::RIGHT_PAREN, tokens);
 }
 
-void Parser::parsePredicate(std::vector<Token *> &tokens) {
+void Parser::parseRulePredicate(std::vector<Token*> &tokens, Rule* &newRule) {
+    //ID
+    Predicate* bodyPredicate = new Predicate(tokens.at(0)->getDescription());
+    newRule->addBodyPredicates(bodyPredicate);
+    checkTerminals(TokenType::ID, tokens);
+    //LEFT_PAREN
+    checkTerminals(TokenType::LEFT_PAREN, tokens);
+    //parameter
+    parseParameter(tokens, bodyPredicate);
+    //parameterList
+    parseParameterList(tokens, bodyPredicate);
+    //RIGHT_PAREN
+    checkTerminals(TokenType::RIGHT_PAREN, tokens);
+}
+
+void Parser::parsePredicate(std::vector<Token *> &tokens, Predicate* &newPredicate) {
     //ID
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //parameter
-    parseParameter(tokens);
+    parseParameter(tokens, newPredicate);
     //parameterList
-    parseParameterList(tokens);
+    parseParameterList(tokens, newPredicate);
     //RIGHT_PAREN
     checkTerminals(TokenType::RIGHT_PAREN, tokens);
 }
 
+void Parser::parsePredicateList(std::vector<Token*> &tokens, Rule* &newRule) {
+    if (tokens.at(0)->getType() == TokenType::COMMA) {
+        //COMMA
+        checkTerminals(TokenType::COMMA, tokens);
+        //predicate
+        parseRulePredicate(tokens, newRule);
+        //predicateList
+        parsePredicateList(tokens, newRule);
+    }
+    //Lambda
+}
+/*
 void Parser::parsePredicateList(std::vector<Token *> &tokens) {
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         //COMMA
@@ -207,43 +264,47 @@ void Parser::parsePredicateList(std::vector<Token *> &tokens) {
     }
     //Lambda
 }
-
-void Parser::parseParameter(std::vector<Token *> &tokens) {
+*/
+void Parser::parseParameter(std::vector<Token *> &tokens, Predicate* newPredicate) {
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
     if (tokens.at(0)->getType() == TokenType::STRING) {
+        newPredicate->addParameters(newParameter);
         checkTerminals(TokenType::STRING, tokens);
     } else if (tokens.at(0)->getType() == TokenType::ID) {
+        newPredicate->addParameters(newParameter);
         checkTerminals(TokenType::ID, tokens);
     } else {
         throw tokens.at(0);
     }
-
 }
 
-void Parser::parseParameterList(std::vector<Token *> &tokens) {
+void Parser::parseParameterList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         //COMMA
         checkTerminals(TokenType::COMMA, tokens);
         //parameter
-        parseParameter(tokens);
+        parseParameter(tokens, newPredicate);
         //parameterList
-        parseParameterList(tokens);
+        parseParameterList(tokens, newPredicate);
     }
     //Lambda
 }
 
-void Parser::parseQuery(std::vector<Token *> &tokens) {
+void Parser::parseQuery(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //predicate
-    parsePredicate(tokens);
+    Predicate* newQuery = new Predicate(tokens.at(0)->getDescription());
+    parsePredicate(tokens, newQuery);
     //Q_MARK
     checkTerminals(TokenType::Q_MARK, tokens);
+    program->queries.push_back(newQuery);
 }
 
-void Parser::parseQueryList(std::vector<Token *> &tokens) {
+void Parser::parseQueryList(std::vector<Token *> &tokens, DatalogProgram* &program) {
     if (tokens.at(0)->getType() == TokenType::ID) {
         //query
-        parseQuery(tokens);
+        parseQuery(tokens, program);
         //queryList
-        parseQueryList(tokens);
+        parseQueryList(tokens, program);
     }
     //Lambda
 }

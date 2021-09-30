@@ -3,3 +3,11 @@
 //
 
 #include "Parameter.h"
+Parameter::Parameter(std::string p) {
+    this->p = p;
+}
+
+std::string Parameter::toString() {
+    std::string parameterString = p;
+    return parameterString;
+}

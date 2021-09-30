@@ -34,6 +34,9 @@ CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj
 CMakeFiles/project_1.dir/DatalogProgram.cpp.obj
  C:/Users/jharw/CS236/project-1/DatalogProgram.cpp
  C:/Users/jharw/CS236/project-1/DatalogProgram.h
+ C:/Users/jharw/CS236/project-1/Parameter.h
+ C:/Users/jharw/CS236/project-1/Predicate.h
+ C:/Users/jharw/CS236/project-1/Rule.h
 CMakeFiles/project_1.dir/EOFAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/EOFAutomaton.cpp
@@ -88,8 +91,11 @@ CMakeFiles/project_1.dir/Parameter.cpp.obj
  C:/Users/jharw/CS236/project-1/Parameter.h
 CMakeFiles/project_1.dir/Parser.cpp.obj
  C:/Users/jharw/CS236/project-1/DatalogProgram.h
+ C:/Users/jharw/CS236/project-1/Parameter.h
  C:/Users/jharw/CS236/project-1/Parser.cpp
  C:/Users/jharw/CS236/project-1/Parser.h
+ C:/Users/jharw/CS236/project-1/Predicate.h
+ C:/Users/jharw/CS236/project-1/Rule.h
  C:/Users/jharw/CS236/project-1/Token.h
 CMakeFiles/project_1.dir/PeriodAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
@@ -97,6 +103,7 @@ CMakeFiles/project_1.dir/PeriodAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/PeriodAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
 CMakeFiles/project_1.dir/Predicate.cpp.obj
+ C:/Users/jharw/CS236/project-1/Parameter.h
  C:/Users/jharw/CS236/project-1/Predicate.cpp
  C:/Users/jharw/CS236/project-1/Predicate.h
 CMakeFiles/project_1.dir/Q_MarkAutomaton.cpp.obj
@@ -115,6 +122,8 @@ CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Right_ParenAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
 CMakeFiles/project_1.dir/Rule.cpp.obj
+ C:/Users/jharw/CS236/project-1/Parameter.h
+ C:/Users/jharw/CS236/project-1/Predicate.h
  C:/Users/jharw/CS236/project-1/Rule.cpp
  C:/Users/jharw/CS236/project-1/Rule.h
 CMakeFiles/project_1.dir/RulesAutomaton.cpp.obj
@@ -144,6 +153,9 @@ CMakeFiles/project_1.dir/main.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/DatalogProgram.h
  C:/Users/jharw/CS236/project-1/Lexer.h
+ C:/Users/jharw/CS236/project-1/Parameter.h
  C:/Users/jharw/CS236/project-1/Parser.h
+ C:/Users/jharw/CS236/project-1/Predicate.h
+ C:/Users/jharw/CS236/project-1/Rule.h
  C:/Users/jharw/CS236/project-1/Token.h
  C:/Users/jharw/CS236/project-1/main.cpp
