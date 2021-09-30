@@ -11,6 +11,7 @@ class Parameter {
 public:
     Parameter(std::string p);
     std::string toString();
+    std::string getP();
 private:
     std::string p;
 };

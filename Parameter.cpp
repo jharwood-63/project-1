@@ -11,3 +11,7 @@ std::string Parameter::toString() {
     std::string parameterString = p;
     return parameterString;
 }
+
+std::string Parameter::getP() {
+    return p;
+}

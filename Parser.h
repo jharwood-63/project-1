@@ -32,7 +32,7 @@ private:
     //void parsePredicateList(std::vector<Token*> &tokens);
     void parsePredicateList(std::vector<Token*> &tokens, Rule* &newRule);
     void parseParameterList(std::vector<Token*> &tokens, Predicate* &newPredicate);
-    void parseStringList(std::vector<Token*> &tokens, Predicate* &newPredicate);
+    void parseStringList(std::vector<Token*> &tokens, Predicate* &newPredicate, DatalogProgram* &program);
     void parseIdList(std::vector<Token*> &tokens, Predicate* &newPredicate);
     //void parseRuleIdList(std::vector<Token*> &tokens,);
     void parseParameter(std::vector<Token*> &tokens, Predicate* newPredicate);

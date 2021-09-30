@@ -12,7 +12,7 @@ void Parser::parse(std::vector<Token *> &tokens) {
         parseDatalogProgram(tokens, program);
     }
     catch(Token* error) {
-        std::cout << "Failure!\n\t" << error->toString() << std::endl;
+        std::cout << "Failure!\n  " << error->toString();
     }
     if (tokens.empty()) {
         std::cout << "Success!" << std::endl;
@@ -101,13 +101,13 @@ void Parser::parseScheme(std::vector<Token *> &tokens, DatalogProgram* &program)
 
 void Parser::parseIdList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
     //COMMA
-    checkTerminals(TokenType::COMMA, tokens);
-    //ID
-    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
-    newPredicate->addParameters(newParameter);
-    checkTerminals(TokenType::ID, tokens);
-    //idList
     if (tokens.at(0)->getType() == TokenType::COMMA) {
+        checkTerminals(TokenType::COMMA, tokens);
+        //ID
+        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+        newPredicate->addParameters(newParameter);
+        checkTerminals(TokenType::ID, tokens);
+        //idList
         parseIdList(tokens, newPredicate);
     }
     //lambda
@@ -149,9 +149,10 @@ void Parser::parseFact(std::vector<Token *> &tokens, DatalogProgram* &program) {
     //STRING
     Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
     newFact->addParameters(newParameter);
+    program->addDomain(newParameter->getP());
     checkTerminals(TokenType::STRING, tokens);
     //stringList
-    parseStringList(tokens, newFact);
+    parseStringList(tokens, newFact, program);
     //RIGHT_PAREN
     checkTerminals(TokenType::RIGHT_PAREN, tokens);
     //PERIOD
@@ -159,16 +160,17 @@ void Parser::parseFact(std::vector<Token *> &tokens, DatalogProgram* &program) {
     program->facts.push_back(newFact);
 }
 
-void Parser::parseStringList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
+void Parser::parseStringList(std::vector<Token *> &tokens, Predicate* &newPredicate, DatalogProgram* &program) {
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         //COMMA
         checkTerminals(TokenType::COMMA, tokens);
         //STRING
         Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
         newPredicate->addParameters(newParameter);
+        program->addDomain(newParameter->getP());
         checkTerminals(TokenType::STRING, tokens);
         //stringList
-        parseStringList(tokens, newPredicate);
+        parseStringList(tokens, newPredicate, program);
     }
     //Lambda
 }

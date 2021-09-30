@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/jharw/CS236/project-1/DatalogProgram.cpp
+DatalogProgram.h
+C:/Users/jharw/CS236/project-1/DatalogProgram.h
+
+C:/Users/jharw/CS236/project-1/DatalogProgram.h
+vector
+-
+set
+-
+iostream
+-
+Predicate.h
+C:/Users/jharw/CS236/project-1/Predicate.h
+Rule.h
+C:/Users/jharw/CS236/project-1/Rule.h
+
 C:/Users/jharw/CS236/project-1/Parameter.h
 string
 -
@@ -17,10 +33,6 @@ string
 -
 vector
 -
-
-C:/Users/jharw/CS236/project-1/Rule.cpp
-Rule.h
-C:/Users/jharw/CS236/project-1/Rule.h
 
 C:/Users/jharw/CS236/project-1/Rule.h
 Predicate.h

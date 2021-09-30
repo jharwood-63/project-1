@@ -22,7 +22,7 @@ std::string Rule::toString() {
         if (i != (bodyPredicates.size() - 1))
             ruleString += bodyPredicates.at(i)->toString() + ",";
         else
-            ruleString += bodyPredicates.at(i)->toString() + ".\n";
+            ruleString += bodyPredicates.at(i)->toString() + ".";
     }
     return ruleString;
 }

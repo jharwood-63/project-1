@@ -6,6 +6,7 @@
 #define PROJECT_1_DATALOGPROGRAM_H
 
 #include <vector>
+#include <set>
 #include <iostream>
 #include "Predicate.h"
 #include "Rule.h"
@@ -18,6 +19,9 @@ public:
     std::vector<Rule*> rules;
 
     void toString();
+    void addDomain(std::string);
+private:
+    std::set<std::string> domain;
 };
 
 
