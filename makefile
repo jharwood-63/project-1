@@ -1,8 +1,8 @@
 #makefile for lab 2 pass off cases
 NUM:=2
 buckets:=80 100
-numbers_80:=0 1 2 3 4 5 6 7 8
-numbers_100:=0 1 2
+numbers_80:=0 1 2 3 4 5 6 7
+numbers_100:=0
 tests:=Lab$(NUM)PassOffCases
 
 .SILENT: all $(buckets)
