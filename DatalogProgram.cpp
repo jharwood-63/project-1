@@ -55,8 +55,8 @@ void DatalogProgram::toString() {
         for (std::set<std::string>::iterator itr = domain.begin(); itr != domain.end(); itr++) {
             domainStr += *itr + "\n  ";
         }
-        //domainStr.pop_back();
-        //domainStr.pop_back();
+        domainStr.pop_back();
+        domainStr.pop_back();
         //domainStr.pop_back();
         std::cout << domainStr;
     }
