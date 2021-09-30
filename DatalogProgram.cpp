@@ -12,7 +12,7 @@ void DatalogProgram::toString() {
         if (i != (schemes.size() - 1))
             std::cout << schemes.at(i)->toString() << "\n  ";
         else
-            std::cout << schemes.at(i)->toString() << "\n\n";
+            std::cout << schemes.at(i)->toString() << "\n";
     }
     //facts
     std::cout << "Facts(" << facts.size() << "):\n";
@@ -22,7 +22,7 @@ void DatalogProgram::toString() {
             if (i != (facts.size() - 1))
                 std::cout << facts.at(i)->toString() << ".\n  ";
             else
-                std::cout << facts.at(i)->toString() << ".\n\n";
+                std::cout << facts.at(i)->toString() << ".\n";
         }
     }
     //rules
@@ -33,7 +33,7 @@ void DatalogProgram::toString() {
             if (i != (rules.size() - 1))
                 std::cout << rules.at(i)->toString() << "\n  ";
             else
-                std::cout << rules.at(i)->toString() << "\n\n";
+                std::cout << rules.at(i)->toString() << "\n";
         }
     }
     //queries
@@ -44,7 +44,7 @@ void DatalogProgram::toString() {
             if (i != (queries.size() - 1))
                 std::cout << queries.at(i)->toString() << "?\n  ";
             else
-                std::cout << queries.at(i)->toString() << "?\n\n";
+                std::cout << queries.at(i)->toString() << "?\n";
         }
     }
     //Domain
