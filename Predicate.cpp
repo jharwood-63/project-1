@@ -14,7 +14,7 @@ void Predicate::addParameters(Parameter* parameter) {
 
 std::string Predicate::toString() {
     std::string predicateString = id + "(";
-    for (int i = 0; i < parameters.size(); i++) {
+    for (unsigned int i = 0; i < parameters.size(); i++) {
         if (i != (parameters.size() - 1))
             predicateString += parameters.at(i)->toString() + ",";
         else

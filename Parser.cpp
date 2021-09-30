@@ -50,7 +50,7 @@ void Parser::checkTerminals(TokenType type, std::vector<Token*> &tokens) {
 }
 
 void Parser::filterComments(std::vector<Token *> &tokens) {
-    for (int i = 0; i < tokens.size(); i++) {
+    for (unsigned int i = 0; i < tokens.size(); i++) {
         while (tokens.at(i)->getType() == TokenType::COMMENT) {
             tokens.erase(tokens.begin() + i);
         }
