@@ -304,6 +304,33 @@ CommentAutomaton.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/CommentAutomaton.cpp.s
 .PHONY : CommentAutomaton.cpp.s
 
+Database.obj: Database.cpp.obj
+
+.PHONY : Database.obj
+
+# target to build an object file
+Database.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Database.cpp.obj
+.PHONY : Database.cpp.obj
+
+Database.i: Database.cpp.i
+
+.PHONY : Database.i
+
+# target to preprocess a source file
+Database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Database.cpp.i
+.PHONY : Database.cpp.i
+
+Database.s: Database.cpp.s
+
+.PHONY : Database.s
+
+# target to generate assembly for a file
+Database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Database.cpp.s
+.PHONY : Database.cpp.s
+
 DatalogProgram.obj: DatalogProgram.cpp.obj
 
 .PHONY : DatalogProgram.obj
@@ -384,6 +411,33 @@ FactsAutomaton.s: FactsAutomaton.cpp.s
 FactsAutomaton.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/FactsAutomaton.cpp.s
 .PHONY : FactsAutomaton.cpp.s
+
+Header.obj: Header.cpp.obj
+
+.PHONY : Header.obj
+
+# target to build an object file
+Header.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Header.cpp.obj
+.PHONY : Header.cpp.obj
+
+Header.i: Header.cpp.i
+
+.PHONY : Header.i
+
+# target to preprocess a source file
+Header.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Header.cpp.i
+.PHONY : Header.cpp.i
+
+Header.s: Header.cpp.s
+
+.PHONY : Header.s
+
+# target to generate assembly for a file
+Header.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Header.cpp.s
+.PHONY : Header.cpp.s
 
 IdAutomaton.obj: IdAutomaton.cpp.obj
 
@@ -655,6 +709,33 @@ QueriesAutomaton.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/QueriesAutomaton.cpp.s
 .PHONY : QueriesAutomaton.cpp.s
 
+Relation.obj: Relation.cpp.obj
+
+.PHONY : Relation.obj
+
+# target to build an object file
+Relation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Relation.cpp.obj
+.PHONY : Relation.cpp.obj
+
+Relation.i: Relation.cpp.i
+
+.PHONY : Relation.i
+
+# target to preprocess a source file
+Relation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Relation.cpp.i
+.PHONY : Relation.cpp.i
+
+Relation.s: Relation.cpp.s
+
+.PHONY : Relation.s
+
+# target to generate assembly for a file
+Relation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Relation.cpp.s
+.PHONY : Relation.cpp.s
+
 Right_ParenAutomaton.obj: Right_ParenAutomaton.cpp.obj
 
 .PHONY : Right_ParenAutomaton.obj
@@ -817,6 +898,33 @@ Token.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Token.cpp.s
 .PHONY : Token.cpp.s
 
+Tuple.obj: Tuple.cpp.obj
+
+.PHONY : Tuple.obj
+
+# target to build an object file
+Tuple.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Tuple.cpp.obj
+.PHONY : Tuple.cpp.obj
+
+Tuple.i: Tuple.cpp.i
+
+.PHONY : Tuple.i
+
+# target to preprocess a source file
+Tuple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Tuple.cpp.i
+.PHONY : Tuple.cpp.i
+
+Tuple.s: Tuple.cpp.s
+
+.PHONY : Tuple.s
+
+# target to generate assembly for a file
+Tuple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project_1.dir\build.make CMakeFiles/project_1.dir/Tuple.cpp.s
+.PHONY : Tuple.cpp.s
+
 UndefinedAutomaton.obj: UndefinedAutomaton.cpp.obj
 
 .PHONY : UndefinedAutomaton.obj
@@ -898,6 +1006,9 @@ help:
 	@echo ... CommentAutomaton.obj
 	@echo ... CommentAutomaton.i
 	@echo ... CommentAutomaton.s
+	@echo ... Database.obj
+	@echo ... Database.i
+	@echo ... Database.s
 	@echo ... DatalogProgram.obj
 	@echo ... DatalogProgram.i
 	@echo ... DatalogProgram.s
@@ -907,6 +1018,9 @@ help:
 	@echo ... FactsAutomaton.obj
 	@echo ... FactsAutomaton.i
 	@echo ... FactsAutomaton.s
+	@echo ... Header.obj
+	@echo ... Header.i
+	@echo ... Header.s
 	@echo ... IdAutomaton.obj
 	@echo ... IdAutomaton.i
 	@echo ... IdAutomaton.s
@@ -937,6 +1051,9 @@ help:
 	@echo ... QueriesAutomaton.obj
 	@echo ... QueriesAutomaton.i
 	@echo ... QueriesAutomaton.s
+	@echo ... Relation.obj
+	@echo ... Relation.i
+	@echo ... Relation.s
 	@echo ... Right_ParenAutomaton.obj
 	@echo ... Right_ParenAutomaton.i
 	@echo ... Right_ParenAutomaton.s
@@ -955,6 +1072,9 @@ help:
 	@echo ... Token.obj
 	@echo ... Token.i
 	@echo ... Token.s
+	@echo ... Tuple.obj
+	@echo ... Tuple.i
+	@echo ... Tuple.s
 	@echo ... UndefinedAutomaton.obj
 	@echo ... UndefinedAutomaton.i
 	@echo ... UndefinedAutomaton.s

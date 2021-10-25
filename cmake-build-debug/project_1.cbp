@@ -121,6 +121,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/CommentAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Database.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Database.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/DatalogProgram.cpp">
 			<Option target="project_1"/>
 		</Unit>
@@ -137,6 +143,12 @@
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/FactsAutomaton.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Header.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Header.h">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/IdAutomaton.cpp">
@@ -199,6 +211,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/QueriesAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Relation.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Relation.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Right_ParenAutomaton.cpp">
 			<Option target="project_1"/>
 		</Unit>
@@ -233,6 +251,12 @@
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Token.h">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Tuple.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Tuple.h">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/UndefinedAutomaton.cpp">
