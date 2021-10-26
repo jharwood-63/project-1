@@ -5,9 +5,9 @@
 #include "Parser.h"
 #include <iostream>
 
-void Parser::parse(std::vector<Token *> &tokens) {
+void Parser::parse(std::vector<Token *> &tokens, DatalogProgram* program) {
     filterComments(tokens);
-    DatalogProgram* program = new DatalogProgram();
+
     try {
         parseDatalogProgram(tokens, program);
     }
@@ -83,13 +83,18 @@ void Parser::parseDatalogProgram(std::vector<Token *> &tokens, DatalogProgram* &
 }
 
 void Parser::parseScheme(std::vector<Token *> &tokens, DatalogProgram* &program) {
+    bool isConstant;
     //ID
     Predicate* newScheme = new Predicate(tokens.at(0)->getDescription());
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //ID
-    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    if (tokens.at(0)->getDescription().substr(0, 1) == "\'")
+        isConstant = true;
+    else
+        isConstant = false;
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), isConstant);
     newScheme->addParameters(newParameter);
     checkTerminals(TokenType::ID, tokens);
     //idList
@@ -100,11 +105,16 @@ void Parser::parseScheme(std::vector<Token *> &tokens, DatalogProgram* &program)
 }
 
 void Parser::parseIdList(std::vector<Token *> &tokens, Predicate* &newPredicate) {
+    bool isConstant;
     //COMMA
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         checkTerminals(TokenType::COMMA, tokens);
         //ID
-        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+        if (tokens.at(0)->getDescription().substr(0, 1) == "\'")
+            isConstant = true;
+        else
+            isConstant = false;
+        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), isConstant);
         newPredicate->addParameters(newParameter);
         checkTerminals(TokenType::ID, tokens);
         //idList
@@ -141,13 +151,18 @@ void Parser::parseFactList(std::vector<Token *> &tokens, DatalogProgram* &progra
 }
 
 void Parser::parseFact(std::vector<Token *> &tokens, DatalogProgram* &program) {
+    bool isConstant;
     //ID
     Predicate* newFact = new Predicate(tokens.at(0)->getDescription());
     checkTerminals(TokenType::ID, tokens);
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //STRING
-    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    if (tokens.at(0)->getDescription().substr(0, 1) == "\'")
+        isConstant = true;
+    else
+        isConstant = false;
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), isConstant);
     newFact->addParameters(newParameter);
     program->addDomain(newParameter->getP());
     checkTerminals(TokenType::STRING, tokens);
@@ -161,11 +176,16 @@ void Parser::parseFact(std::vector<Token *> &tokens, DatalogProgram* &program) {
 }
 
 void Parser::parseStringList(std::vector<Token *> &tokens, Predicate* &newPredicate, DatalogProgram* &program) {
+    bool isConstant;
     if (tokens.at(0)->getType() == TokenType::COMMA) {
         //COMMA
         checkTerminals(TokenType::COMMA, tokens);
         //STRING
-        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+        if (tokens.at(0)->getDescription().substr(0, 1) == "\'")
+            isConstant = true;
+        else
+            isConstant = false;
+        Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), isConstant);
         newPredicate->addParameters(newParameter);
         program->addDomain(newParameter->getP());
         checkTerminals(TokenType::STRING, tokens);
@@ -199,6 +219,7 @@ void Parser::parseRule(std::vector<Token *> &tokens, DatalogProgram* &program) {
 }
 
 void Parser::parseHeadPredicate(std::vector<Token *> &tokens, Rule* &newRule) {
+    bool isConstant;
     //ID
     Predicate* headPredicate = new Predicate(tokens.at(0)->getDescription());
     newRule->setHeadPredicate(headPredicate);
@@ -206,7 +227,11 @@ void Parser::parseHeadPredicate(std::vector<Token *> &tokens, Rule* &newRule) {
     //LEFT_PAREN
     checkTerminals(TokenType::LEFT_PAREN, tokens);
     //ID
-    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    if (tokens.at(0)->getDescription().substr(0, 1) == "\'")
+        isConstant = true;
+    else
+        isConstant = false;
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), isConstant);
     headPredicate->addParameters(newParameter);
     checkTerminals(TokenType::ID, tokens);
     //idList
@@ -268,7 +293,7 @@ void Parser::parsePredicateList(std::vector<Token *> &tokens) {
 }
 */
 void Parser::parseParameter(std::vector<Token *> &tokens, Predicate* newPredicate) {
-    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription());
+    Parameter* newParameter = new Parameter(tokens.at(0)->getDescription(), true);
     if (tokens.at(0)->getType() == TokenType::STRING) {
         newPredicate->addParameters(newParameter);
         checkTerminals(TokenType::STRING, tokens);

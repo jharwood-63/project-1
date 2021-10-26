@@ -3,8 +3,9 @@
 //
 
 #include "Parameter.h"
-Parameter::Parameter(std::string p) {
+Parameter::Parameter(std::string p, bool isConstant) {
     this->p = p;
+    this->isConstant = isConstant;
 }
 
 std::string Parameter::toString() {
@@ -14,4 +15,8 @@ std::string Parameter::toString() {
 
 std::string Parameter::getP() {
     return p;
+}
+
+void Parameter::setConstant(bool isConstant) {
+    this->isConstant = isConstant;
 }

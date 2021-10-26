@@ -14,7 +14,7 @@
 
 class Parser {
 public:
-    void parse(std::vector<Token*> &tokens);
+    void parse(std::vector<Token*> &tokens, DatalogProgram* program);
 
 private:
     void parseDatalogProgram(std::vector<Token*> &tokens, DatalogProgram* &program);

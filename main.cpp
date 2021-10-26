@@ -1,5 +1,8 @@
 #include "Lexer.h"
 #include "Parser.h"
+#include "DatalogProgram.h"
+#include "Database.h"
+#include "Interpreter.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,6 +15,9 @@ int main(int argc, char** argv) {
 
     Lexer* lexer = new Lexer();
     Parser* parser = new Parser();
+    DatalogProgram* program = new DatalogProgram();
+    Database* database = new Database();
+    Interpreter* interpreter;
 
     std::vector<Token*> tokens;
 
@@ -33,12 +39,16 @@ int main(int argc, char** argv) {
     lexer->Run(input);
 
     tokens = lexer->getTokens();
-    parser->parse(tokens);
+    parser->parse(tokens, program);
+    interpreter = new Interpreter(program, database);
 
     inputFile.close();
 
     delete lexer;
     delete parser;
+    delete program;
+    delete database;
+    delete interpreter;
 
     return 0;
 }

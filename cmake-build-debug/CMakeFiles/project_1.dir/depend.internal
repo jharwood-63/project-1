@@ -31,6 +31,12 @@ CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/CommentAutomaton.cpp
  C:/Users/jharw/CS236/project-1/CommentAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/Database.cpp.obj
+ C:/Users/jharw/CS236/project-1/Database.cpp
+ C:/Users/jharw/CS236/project-1/Database.h
+ C:/Users/jharw/CS236/project-1/Header.h
+ C:/Users/jharw/CS236/project-1/Relation.h
+ C:/Users/jharw/CS236/project-1/Tuple.h
 CMakeFiles/project_1.dir/DatalogProgram.cpp.obj
  C:/Users/jharw/CS236/project-1/DatalogProgram.cpp
  C:/Users/jharw/CS236/project-1/DatalogProgram.h
@@ -47,11 +53,25 @@ CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/FactsAutomaton.cpp
  C:/Users/jharw/CS236/project-1/FactsAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/Header.cpp.obj
+ C:/Users/jharw/CS236/project-1/Header.cpp
+ C:/Users/jharw/CS236/project-1/Header.h
 CMakeFiles/project_1.dir/IdAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/IdAutomaton.cpp
  C:/Users/jharw/CS236/project-1/IdAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj
+ C:/Users/jharw/CS236/project-1/Database.h
+ C:/Users/jharw/CS236/project-1/DatalogProgram.h
+ C:/Users/jharw/CS236/project-1/Header.h
+ C:/Users/jharw/CS236/project-1/Interpreter.cpp
+ C:/Users/jharw/CS236/project-1/Interpreter.h
+ C:/Users/jharw/CS236/project-1/Parameter.h
+ C:/Users/jharw/CS236/project-1/Predicate.h
+ C:/Users/jharw/CS236/project-1/Relation.h
+ C:/Users/jharw/CS236/project-1/Rule.h
+ C:/Users/jharw/CS236/project-1/Tuple.h
 CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/Left_ParenAutomaton.cpp
@@ -116,6 +136,11 @@ CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/QueriesAutomaton.cpp
  C:/Users/jharw/CS236/project-1/QueriesAutomaton.h
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/Relation.cpp.obj
+ C:/Users/jharw/CS236/project-1/Header.h
+ C:/Users/jharw/CS236/project-1/Relation.cpp
+ C:/Users/jharw/CS236/project-1/Relation.h
+ C:/Users/jharw/CS236/project-1/Tuple.h
 CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/Right_ParenAutomaton.cpp
@@ -144,6 +169,9 @@ CMakeFiles/project_1.dir/StringAutomaton.cpp.obj
 CMakeFiles/project_1.dir/Token.cpp.obj
  C:/Users/jharw/CS236/project-1/Token.cpp
  C:/Users/jharw/CS236/project-1/Token.h
+CMakeFiles/project_1.dir/Tuple.cpp.obj
+ C:/Users/jharw/CS236/project-1/Tuple.cpp
+ C:/Users/jharw/CS236/project-1/Tuple.h
 CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
  C:/Users/jharw/CS236/project-1/Token.h
@@ -151,11 +179,16 @@ CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj
  C:/Users/jharw/CS236/project-1/UndefinedAutomaton.h
 CMakeFiles/project_1.dir/main.cpp.obj
  C:/Users/jharw/CS236/project-1/Automaton.h
+ C:/Users/jharw/CS236/project-1/Database.h
  C:/Users/jharw/CS236/project-1/DatalogProgram.h
+ C:/Users/jharw/CS236/project-1/Header.h
+ C:/Users/jharw/CS236/project-1/Interpreter.h
  C:/Users/jharw/CS236/project-1/Lexer.h
  C:/Users/jharw/CS236/project-1/Parameter.h
  C:/Users/jharw/CS236/project-1/Parser.h
  C:/Users/jharw/CS236/project-1/Predicate.h
+ C:/Users/jharw/CS236/project-1/Relation.h
  C:/Users/jharw/CS236/project-1/Rule.h
  C:/Users/jharw/CS236/project-1/Token.h
+ C:/Users/jharw/CS236/project-1/Tuple.h
  C:/Users/jharw/CS236/project-1/main.cpp

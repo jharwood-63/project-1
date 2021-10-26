@@ -7,13 +7,14 @@
 
 #include <map>
 #include <string>
+#include <vector>
 #include "Relation.h"
 
 class Database {
-private:
-    std::map<std::string, Relation*> database;
 public:
+    std::map<std::string, Relation*> dataMap;
     void addToMap(Relation* relation);
+    //std::vector<Relation*> getRelations();
 };
 
 

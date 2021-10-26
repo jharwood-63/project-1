@@ -31,6 +31,12 @@ CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj: ../CommentAutomaton.cpp
 CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj: ../CommentAutomaton.h
 CMakeFiles/project_1.dir/CommentAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/Database.cpp.obj: ../Database.cpp
+CMakeFiles/project_1.dir/Database.cpp.obj: ../Database.h
+CMakeFiles/project_1.dir/Database.cpp.obj: ../Header.h
+CMakeFiles/project_1.dir/Database.cpp.obj: ../Relation.h
+CMakeFiles/project_1.dir/Database.cpp.obj: ../Tuple.h
+
 CMakeFiles/project_1.dir/DatalogProgram.cpp.obj: ../DatalogProgram.cpp
 CMakeFiles/project_1.dir/DatalogProgram.cpp.obj: ../DatalogProgram.h
 CMakeFiles/project_1.dir/DatalogProgram.cpp.obj: ../Parameter.h
@@ -47,10 +53,24 @@ CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../FactsAutomaton.cpp
 CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../FactsAutomaton.h
 CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/Header.cpp.obj: ../Header.cpp
+CMakeFiles/project_1.dir/Header.cpp.obj: ../Header.h
+
 CMakeFiles/project_1.dir/IdAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/IdAutomaton.cpp.obj: ../IdAutomaton.cpp
 CMakeFiles/project_1.dir/IdAutomaton.cpp.obj: ../IdAutomaton.h
 CMakeFiles/project_1.dir/IdAutomaton.cpp.obj: ../Token.h
+
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Database.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../DatalogProgram.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Header.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Interpreter.cpp
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Interpreter.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Parameter.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Predicate.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Relation.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Rule.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Tuple.h
 
 CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj: ../Left_ParenAutomaton.cpp
@@ -116,6 +136,11 @@ CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj: ../QueriesAutomaton.cpp
 CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj: ../QueriesAutomaton.h
 CMakeFiles/project_1.dir/QueriesAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/Relation.cpp.obj: ../Header.h
+CMakeFiles/project_1.dir/Relation.cpp.obj: ../Relation.cpp
+CMakeFiles/project_1.dir/Relation.cpp.obj: ../Relation.h
+CMakeFiles/project_1.dir/Relation.cpp.obj: ../Tuple.h
+
 CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj: ../Right_ParenAutomaton.cpp
 CMakeFiles/project_1.dir/Right_ParenAutomaton.cpp.obj: ../Right_ParenAutomaton.h
@@ -144,18 +169,26 @@ CMakeFiles/project_1.dir/StringAutomaton.cpp.obj: ../Token.h
 CMakeFiles/project_1.dir/Token.cpp.obj: ../Token.cpp
 CMakeFiles/project_1.dir/Token.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/Tuple.cpp.obj: ../Tuple.cpp
+CMakeFiles/project_1.dir/Tuple.cpp.obj: ../Tuple.h
+
 CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../Token.h
 CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../UndefinedAutomaton.cpp
 CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../UndefinedAutomaton.h
 
 CMakeFiles/project_1.dir/main.cpp.obj: ../Automaton.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Database.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../DatalogProgram.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Header.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Interpreter.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Lexer.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Parameter.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Parser.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Predicate.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Relation.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Rule.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Token.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Tuple.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../main.cpp
 

@@ -18,7 +18,7 @@ private:
     Header* header;
 public:
     Relation(std::string name, Header* header);
-    void addTuple(Tuple newTuple);
+    void addTuple(Tuple* newTuple);
     std::string getName();
 
     Relation* select(int index, std::string);

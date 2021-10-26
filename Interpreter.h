@@ -8,16 +8,16 @@
 #include "DatalogProgram.h"
 #include "Database.h"
 #include <string>
-#include <
 
 class Interpreter {
 private:
-    DatalogProgram datalogProgram;
-    Database database;
+    DatalogProgram* datalogProgram;
+    Database* database;
 
     void createRelations();
+    void createTuples();
 public:
-    Interpreter(DatalogProgram datalogProgram, Database database);
+    Interpreter(DatalogProgram* datalogProgram, Database* database);
 };
 
 
