@@ -13,6 +13,8 @@ class Predicate {
 public:
     Predicate(std::string id);
     void addParameters(Parameter* parameter);
+    int getSize();
+    std::string getParameter(int index);
     std::string getId();
     std::string toString();
 private:

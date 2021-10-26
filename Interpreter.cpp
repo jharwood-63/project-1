@@ -23,6 +23,11 @@ void Interpreter::createRelations() {
             newHeader->addAttribute(*currChar);
         }
         Relation* newRelation = new Relation(datalogProgram.schemes.at(i)->getId(), newHeader);
+        //add parameters as a tuple
+        Tuple* newTuple = new Tuple();
+        for (unsigned int k = 0; k < datalogProgram.schemes.at(i)->getSize(); k++) {
+            newTuple->addValue(datalogProgram.schemes.at(i)->getParameter(k));
+        }
         database.addToMap(newRelation);
     }
 }

@@ -14,6 +14,7 @@ private:
     bool operator< (const Tuple &rhs) const;
 public:
     std::string getValue(int index);
+    void addValue(std::string value);
 };
 
 

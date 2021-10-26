@@ -16,6 +16,14 @@ std::string Predicate::getId() {
     return id;
 }
 
+std::string Predicate::getParameter(int index) {
+    return parameters.at(index)->getP();
+}
+
+int Predicate::getSize() {
+    return parameters.size();
+}
+
 std::string Predicate::toString() {
     std::string predicateString = id + "(";
     for (unsigned int i = 0; i < parameters.size(); i++) {
