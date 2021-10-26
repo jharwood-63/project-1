@@ -4,7 +4,7 @@
 
 #include "Relation.h"
 
-Relation::Relation(std::string name, Header header) {
+Relation::Relation(std::string name, Header* header) {
     this->name = name;
     this->header = header;
 }

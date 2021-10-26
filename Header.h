@@ -14,6 +14,7 @@ private:
 public:
     int getSize();
     std::string getValue(int index);
+    void addAttribute(std::string attribute);
 };
 
 

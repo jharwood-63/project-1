@@ -12,6 +12,10 @@ void Predicate::addParameters(Parameter* parameter) {
     parameters.push_back(parameter);
 }
 
+std::string Predicate::getId() {
+    return id;
+}
+
 std::string Predicate::toString() {
     std::string predicateString = id + "(";
     for (unsigned int i = 0; i < parameters.size(); i++) {

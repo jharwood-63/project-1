@@ -15,9 +15,9 @@ class Relation {
 private:
     std::set<Tuple> tuples;
     std::string name;
-    Header header;
+    Header* header;
 public:
-    Relation(std::string name, Header header);
+    Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
     std::string getName();
 

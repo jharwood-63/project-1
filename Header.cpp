@@ -11,3 +11,7 @@ int Header::getSize() {
 std::string Header::getValue(int index) {
     return attributes.at(index);
 }
+
+void Header::addAttribute(std::string attribute) {
+    attributes.push_back(attribute);
+}

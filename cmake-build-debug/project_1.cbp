@@ -157,6 +157,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/IdAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Interpreter.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Interpreter.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Left_ParenAutomaton.cpp">
 			<Option target="project_1"/>
 		</Unit>

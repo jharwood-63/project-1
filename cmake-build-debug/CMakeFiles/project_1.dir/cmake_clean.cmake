@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj"
   "CMakeFiles/project_1.dir/Header.cpp.obj"
   "CMakeFiles/project_1.dir/IdAutomaton.cpp.obj"
+  "CMakeFiles/project_1.dir/Interpreter.cpp.obj"
   "CMakeFiles/project_1.dir/Left_ParenAutomaton.cpp.obj"
   "CMakeFiles/project_1.dir/Lexer.cpp.obj"
   "CMakeFiles/project_1.dir/MultiplyAutomaton.cpp.obj"
