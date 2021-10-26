@@ -40,6 +40,7 @@ private:
     bool Match(TokenType type, TokenType matchingType);
     void checkTerminals(TokenType type, std::vector<Token*> &tokens);
     void filterComments(std::vector<Token*> &tokens);
+    bool setIsConstant(Token* token);
 };
 
 
