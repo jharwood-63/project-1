@@ -22,7 +22,7 @@ public:
     std::string getName();
 
     Relation* select(int index, std::string);
-    Relation* select(int index, int index1);
+    Relation* select(int index1, int index2);
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> newAttributes);
 

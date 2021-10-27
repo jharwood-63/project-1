@@ -21,8 +21,7 @@ Relation* Relation::select(int index, std::string value) {
     //so the index is the column that you want to look at and the value is the value in that column that you want to look for
     //the attributes shouldn't change right?
     std::string currValue;
-    Header* newHeader = this->header;
-    Relation* newRelation = new Relation(this->name, newHeader);
+    Relation* newRelation = new Relation(this->name, this->header);
 
     //this is the column that we are looking at
     //std::string attribute = this->header->getValue(index);
@@ -39,9 +38,24 @@ Relation* Relation::select(int index, std::string value) {
     return newRelation;
 }
 
-Relation* Relation::select(int index, int index1) {
-    //TODO
+Relation* Relation::select(int index1, int index2) {
     //this is checking if two columns have the same value so it gives you two column indexes
+    //got through all the tuples, check the value of both columns
+    //if they are the same, save the row in the new relation
+    std::string val1;
+    std::string val2;
+    Relation* newRelation = new Relation(this->name, this->header);
+
+    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
+        val1 = (*itr)->getValue(index1);
+        val2 = (*itr)->getValue(index2);
+
+        if (val1 == val2) {
+            newRelation->addTuple(*itr);
+        }
+    }
+    
+    return newRelation;
 }
 
 Relation* Relation::project(std::vector<int> indices) {
