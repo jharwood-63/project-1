@@ -13,7 +13,7 @@
 
 class Relation {
 private:
-    std::set<Tuple> tuples;
+    std::set<Tuple*> tuples;
     std::string name;
     Header* header;
 public:
