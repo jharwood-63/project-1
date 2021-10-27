@@ -54,12 +54,22 @@ Relation* Relation::select(int index1, int index2) {
             newRelation->addTuple(*itr);
         }
     }
-    
+
     return newRelation;
 }
 
 Relation* Relation::project(std::vector<int> indices) {
     //TODO
+    //go through the tuples and keep the values at the indexes that are in the vector
+    //need to edit the header, go through the header and copy the attributes that you want into a new header
+    Tuple* newTuple;
+    Header* newHeader = this->header->projectHeader(indices);
+
+    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
+        for (unsigned int i = 0; i < indices.size(); i++) {
+            
+        }
+    }
 }
 
 Relation* Relation::rename(std::vector<std::string> newAttributes) {

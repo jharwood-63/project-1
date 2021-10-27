@@ -15,6 +15,7 @@ public:
     int getSize();
     std::string getValue(int index);
     void addAttribute(std::string attribute);
+    Header* projectHeader(std::vector<int> indices);
 };
 
 
