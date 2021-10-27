@@ -53,3 +53,11 @@ void Interpreter::createTuples() {
         }
     }
 }
+
+Relation* Interpreter::evaluatePredicate(Predicate p) {
+
+}
+
+void Interpreter::evaluateQueries() {
+
+}

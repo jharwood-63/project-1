@@ -16,8 +16,11 @@ private:
 
     void createRelations();
     void createTuples();
+    Relation* evaluatePredicate(Predicate p);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
+
+    void evaluateQueries();
 };
 
 
