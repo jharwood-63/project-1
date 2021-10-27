@@ -9,13 +9,11 @@
 
 class Parameter {
 public:
-    Parameter(std::string p, bool isConstant);
+    Parameter(std::string p);
     std::string toString();
     std::string getP();
-    void setConstant(bool isConstant);
 private:
     std::string p;
-    bool isConstant;
 };
 
 

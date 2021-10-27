@@ -14,6 +14,7 @@ public:
     Predicate(std::string id);
     void addParameters(Parameter* parameter);
     int getSize();
+    std::vector<std::string> getParameters();
     std::string getParameter(int index);
     std::string getId();
     std::string toString();

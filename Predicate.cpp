@@ -24,6 +24,15 @@ int Predicate::getSize() {
     return parameters.size();
 }
 
+std::vector<std::string> Predicate::getParameters() {
+    std::vector<std::string> parameterStrings;
+    for (unsigned int i = 0; i < parameters.size(); i++) {
+        parameterStrings.push_back(parameters.at(i)->getP());
+    }
+
+    return parameterStrings;
+}
+
 std::string Predicate::toString() {
     std::string predicateString = id + "(";
     for (unsigned int i = 0; i < parameters.size(); i++) {

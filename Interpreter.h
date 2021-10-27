@@ -8,6 +8,7 @@
 #include "DatalogProgram.h"
 #include "Database.h"
 #include <string>
+#include <vector>
 
 class Interpreter {
 private:
@@ -16,7 +17,13 @@ private:
 
     void createRelations();
     void createTuples();
-    Relation* evaluatePredicate(Predicate p);
+    Relation* evaluatePredicate(Predicate* predicate);
+
+    Relation* findRelation(Predicate* p);
+    bool setConstant(std::string parameterId);
+    int findIndex1(std::vector<std::string> parameterStrings, std::string parameterId);
+    int findIndex2(std::vector<std::string> parameterStrings, std::string parameterId);
+    bool checkDuplicates(std::vector<std::string> parameterStrings, std::string parameterId);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 

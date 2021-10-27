@@ -41,6 +41,7 @@ int main(int argc, char** argv) {
     tokens = lexer->getTokens();
     parser->parse(tokens, program);
     interpreter = new Interpreter(program, database);
+    interpreter->evaluateQueries();
 
     inputFile.close();
 

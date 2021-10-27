@@ -1,0 +1,6 @@
+Student(A,'19',B)? Yes(2)
+  A='Arthur', B='Freshman'
+  A='Sidney', B='Sophomore'
+Student(M,M,M)? No
+Student('Nicole',howOld,'Senior')? Yes(1)
+  howOld='23'
