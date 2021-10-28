@@ -107,10 +107,12 @@ void Interpreter::evaluateQueries() {
     //TODO
     //FIXME: for testing
     Relation* output;
-    for (unsigned int i = 0; i < datalogProgram->queries.size(); i++) {
-        output = evaluatePredicate(datalogProgram->queries.at(i));
+    std::vector<Predicate*> queries = datalogProgram->queries;
+    for (unsigned int i = 0; i < queries.size(); i++) {
+        Predicate* query = queries.at(i);
+        output = evaluatePredicate(query);
         //add to string stuff
-        
+        toString(query, output);
     }
 }
 
@@ -158,4 +160,9 @@ int Interpreter::searchMap(std::map<int, std::string> saveVars, std::string var,
             return itr->first;
         }
     }
+}
+
+void Interpreter::toString(Predicate *query, Relation *relation) {
+    //print everything out
+    std::cout << query->toString();
 }

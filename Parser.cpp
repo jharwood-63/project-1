@@ -15,8 +15,8 @@ void Parser::parse(std::vector<Token *> &tokens, DatalogProgram* program) {
         std::cout << "Failure!\n  " << error->toString();
     }
     if (tokens.empty()) {
-        std::cout << "Success!" << std::endl;
-        program->toString();
+        //std::cout << "Success!" << std::endl;
+        //program->toString();
     }
 }
 
