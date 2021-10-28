@@ -58,6 +58,7 @@ void Interpreter::createTuples() {
 Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
     std::string currParameter;
     int index;
+    int prevIndex = -1;
     bool isConstant;
     bool isDuplicate;
     std::vector<std::string> allAttributes;
@@ -75,14 +76,15 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
         isConstant = setConstant(currParameter);
         if (isConstant) {
             //constant -> select type 1
-            index = findIndex(parameterStrings, currParameter, false);
+            index = findIndex(parameterStrings, currParameter, -1);
             relation = relation->select(index, currParameter);
             allAttributes.push_back(relation->getAttribute(index));
         }
         else {
             //variable -> check if it is a duplicate, if yes run select type 2
             isDuplicate = checkVector(allAttributes, currParameter);
-            index = findIndex(parameterStrings, currParameter, isDuplicate);
+            index = findIndex(parameterStrings, currParameter, prevIndex);
+            prevIndex = index;
             saveVars.insert({index, currParameter});
             if (isDuplicate) {
                 int index2 = searchMap(saveVars, currParameter, index);
@@ -130,16 +132,18 @@ bool Interpreter::setConstant(std::string parameterId) {
         return false;
 }
 
-int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::string parameterId, bool isDuplicate) {
+int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::string parameterId, int prevIndex) {
     //look through the list
     int parameterSize = parameterStrings.size();
     for (int i = 0; i < parameterSize; i++) {
-        if (parameterStrings.at(i) == parameterId && !isDuplicate) {
+        if (parameterStrings.at(i) == parameterId && (i > prevIndex)) {
             return i;
         }
+        /*
         else if (parameterStrings.at(i) == parameterId && isDuplicate) {
             isDuplicate = false;
         }
+         */
     }
     return -1;
 }

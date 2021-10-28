@@ -21,7 +21,7 @@ private:
 
     Relation* findRelation(Predicate* p);
     bool setConstant(std::string parameterId);
-    int findIndex(std::vector<std::string> parameterStrings, std::string parameterId, bool isDuplicate);
+    int findIndex(std::vector<std::string> parameterStrings, std::string parameterId, int prevIndex);
     int searchMap(std::map<int, std::string> saveVars, std::string var, int index);
     bool checkVector(std::vector<std::string> saveVars, std::string var);
     bool checkAllConst(Predicate* query);
