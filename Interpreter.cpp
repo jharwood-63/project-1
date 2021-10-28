@@ -68,7 +68,7 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
 
     //grab the relation with the same name as the query
     Relation* relation = findRelation(predicate);
-    Relation* newRelation = relation;
+    //Relation* newRelation = relation;
     //look through the parameters
     for (unsigned int i = 0; i < predicate->getSize(); i++) {
         currParameter = parameterStrings.at(i);
@@ -76,7 +76,7 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
         if (isConstant) {
             //constant -> select type 1
             index = findIndex(parameterStrings, currParameter, false);
-            newRelation = newRelation->select(index, currParameter);
+            relation = relation->select(index, currParameter);
             allAttributes.push_back(relation->getAttribute(index));
         }
         else {
@@ -86,7 +86,7 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
             saveVars.insert({index, currParameter});
             if (isDuplicate) {
                 int index2 = searchMap(saveVars, currParameter, index);
-                newRelation = newRelation->select(index, index2);
+                relation = relation->select(index, index2);
             }
             else {
                 indices.push_back(index);
@@ -97,15 +97,13 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
         }
     }
     //project all to a new relation
-    newRelation = newRelation->project(indices);
+    relation = relation->project(indices);
     //rename the attributes
-    newRelation = newRelation->rename(renameAttributes);
-    return newRelation;
+    relation = relation->rename(renameAttributes);
+    return relation;
 }
 
 void Interpreter::evaluateQueries() {
-    //TODO
-    //FIXME: for testing
     Relation* output;
     std::vector<Predicate*> queries = datalogProgram->queries;
     for (unsigned int i = 0; i < queries.size(); i++) {
@@ -162,7 +160,34 @@ int Interpreter::searchMap(std::map<int, std::string> saveVars, std::string var,
     }
 }
 
+bool Interpreter::checkAllConst(Predicate* query) {
+    int count = 0;
+    for (unsigned int i = 0; i < query->getSize(); i++) {
+        if (query->getParameters().at(i).substr(0, 1) == "\'") {
+            count++;
+        }
+    }
+
+    if(count == query->getSize())
+        return true;
+    else
+        return false;
+}
+
 void Interpreter::toString(Predicate *query, Relation *relation) {
     //print everything out
-    std::cout << query->toString();
+    int numRows = relation->getRowSize();
+    bool bothConstant;
+    if (numRows != 0) {
+        std::cout << query->toString() << " Yes(" << numRows << ")\n";
+        if (!checkAllConst(query)) {
+            relation->toString();
+        }
+    }
+    else {
+        std::cout << query->toString() << " No\n";
+    }
+
 }
+
+

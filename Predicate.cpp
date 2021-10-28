@@ -41,6 +41,6 @@ std::string Predicate::toString() {
         else
             predicateString += parameters.at(i)->toString();
     }
-    predicateString += ")";
+    predicateString += ")?";
     return predicateString;
 }

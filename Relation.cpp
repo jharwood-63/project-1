@@ -21,6 +21,10 @@ std::string Relation::getAttribute(int index) {
     return this->header->getValue(index);
 }
 
+int Relation::getRowSize() {
+    return tuples.size();
+}
+
 Relation* Relation::select(int index, std::string value) {
     //so the index is the column that you want to look at and the value is the value in that column that you want to look for
     //the attributes shouldn't change right?
@@ -99,9 +103,9 @@ void Relation::toString() {
         headerIndex = 0;
         while (headerIndex < header->getSize()) {
             if ((headerIndex + 1) != header->getSize()) {
-                std::cout << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << ", ";
+                std::cout << "  " << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << ", ";
             } else {
-                std::cout << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << std::endl;
+                std::cout << "  " << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << std::endl;
             }
             headerIndex++;
         }

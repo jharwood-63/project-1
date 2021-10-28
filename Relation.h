@@ -21,6 +21,7 @@ public:
     void addTuple(Tuple newTuple);
     std::string getName();
     std::string getAttribute(int index);
+    int getRowSize();
 
     Relation* select(int index, std::string);
     Relation* select(int index1, int index2);
