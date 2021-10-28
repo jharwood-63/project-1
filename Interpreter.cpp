@@ -120,6 +120,7 @@ Relation* Interpreter::findRelation(Predicate* p) {
             return itr->second;
         }
     }
+    return nullptr;
 }
 
 bool Interpreter::setConstant(std::string parameterId) {
@@ -139,6 +140,7 @@ int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::strin
             isDuplicate = false;
         }
     }
+    return -1;
 }
 
 bool Interpreter::checkVector(std::vector<std::string> saveVars, std::string var) {
@@ -158,6 +160,8 @@ int Interpreter::searchMap(std::map<int, std::string> saveVars, std::string var,
             return itr->first;
         }
     }
+
+    return -1;
 }
 
 bool Interpreter::checkAllConst(Predicate* query) {
@@ -177,7 +181,6 @@ bool Interpreter::checkAllConst(Predicate* query) {
 void Interpreter::toString(Predicate *query, Relation *relation) {
     //print everything out
     int numRows = relation->getRowSize();
-    bool bothConstant;
     if (numRows != 0) {
         std::cout << query->toString() << " Yes(" << numRows << ")\n";
         if (!checkAllConst(query)) {
