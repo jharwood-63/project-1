@@ -14,7 +14,6 @@ class Database {
 public:
     std::map<std::string, Relation*> dataMap;
     void addToMap(Relation* relation);
-    //std::vector<Relation*> getRelations();
 };
 
 

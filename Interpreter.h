@@ -21,9 +21,9 @@ private:
 
     Relation* findRelation(Predicate* p);
     bool setConstant(std::string parameterId);
-    int findIndex1(std::vector<std::string> parameterStrings, std::string parameterId);
-    int findIndex2(std::vector<std::string> parameterStrings, std::string parameterId);
-    bool checkDuplicates(std::vector<std::string> parameterStrings, std::string parameterId);
+    int findIndex(std::vector<std::string> parameterStrings, std::string parameterId, bool isDuplicate);
+    int searchMap(std::map<int, std::string> saveVars, std::string var, int index);
+    bool checkVector(std::vector<std::string> saveVars, std::string var);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 

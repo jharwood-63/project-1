@@ -42,9 +42,9 @@ void Interpreter::createTuples() {
     for (unsigned int i = 0; i < datalogProgram->facts.size(); i++) {
         currFact = datalogProgram->facts.at(i);
         currFactName = currFact->getId();
-        Tuple* newTuple = new Tuple();
+        Tuple newTuple = Tuple();
         for (unsigned int j = 0; j < currFact->getSize(); j++) {
-            newTuple->addValue(currFact->getParameter(j));
+            newTuple.addValue(currFact->getParameter(j));
         }
         //look through relations to find the correct one and add the tuple to it
         for (std::map<std::string, Relation*>::iterator itr = database->dataMap.begin(); itr != database->dataMap.end(); itr++) {
@@ -56,50 +56,61 @@ void Interpreter::createTuples() {
 }
 
 Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
-    //TODO
     std::string currParameter;
-    int index1;
-    int index2;
+    int index;
     bool isConstant;
     bool isDuplicate;
-    std::vector<std::string> newAttributes;
+    std::vector<std::string> allAttributes;
+    std::vector<std::string> renameAttributes;
+    std::vector<int> indices;
     std::vector<std::string> parameterStrings = predicate->getParameters();
+    std::map<int, std::string> saveVars;
 
     //grab the relation with the same name as the query
     Relation* relation = findRelation(predicate);
-    Relation* newRelation;
+    Relation* newRelation = relation;
     //look through the parameters
     for (unsigned int i = 0; i < predicate->getSize(); i++) {
-        currParameter = predicate->getParameter(i);
+        currParameter = parameterStrings.at(i);
         isConstant = setConstant(currParameter);
         if (isConstant) {
             //constant -> select type 1
-            index1 = findIndex1(parameterStrings, currParameter);
-            newRelation = relation->select(index1, currParameter);
+            index = findIndex(parameterStrings, currParameter, false);
+            newRelation = newRelation->select(index, currParameter);
+            allAttributes.push_back(relation->getAttribute(index));
         }
         else {
-            //duplicate variables -> select type 2
-            isDuplicate = checkDuplicates(parameterStrings, currParameter);
+            //variable -> check if it is a duplicate, if yes run select type 2
+            isDuplicate = checkVector(allAttributes, currParameter);
+            index = findIndex(parameterStrings, currParameter, isDuplicate);
+            saveVars.insert({index, currParameter});
             if (isDuplicate) {
-                index1 = findIndex1(predicate->getParameters(), currParameter);
-                index2 = findIndex2(predicate->getParameters(), currParameter);
-                newRelation->select(index1, index2);
+                int index2 = searchMap(saveVars, currParameter, index);
+                newRelation = newRelation->select(index, index2);
             }
-
-            //singular variable -> save for project and rename
+            else {
+                indices.push_back(index);
+                renameAttributes.push_back(currParameter);
+            }
+            //save the attribute in the order we saw it
+            allAttributes.push_back(currParameter);
         }
-
     }
-
     //project all to a new relation
+    newRelation = newRelation->project(indices);
     //rename the attributes
+    newRelation = newRelation->rename(renameAttributes);
+    return newRelation;
 }
 
 void Interpreter::evaluateQueries() {
     //TODO
     //FIXME: for testing
+    Relation* output;
     for (unsigned int i = 0; i < datalogProgram->queries.size(); i++) {
-        evaluatePredicate(datalogProgram->queries.at(i));
+        output = evaluatePredicate(datalogProgram->queries.at(i));
+        //add to string stuff
+        
     }
 }
 
@@ -118,38 +129,33 @@ bool Interpreter::setConstant(std::string parameterId) {
         return false;
 }
 
-int Interpreter::findIndex1(std::vector<std::string> parameterStrings, std::string parameterId) {
+int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::string parameterId, bool isDuplicate) {
     //look through the list
     for (unsigned int i = 0; i < parameterStrings.size(); i++) {
-        if (parameterStrings.at(i) == parameterId) {
+        if (parameterStrings.at(i) == parameterId && !isDuplicate) {
             return i;
+        }
+        else if (parameterStrings.at(i) == parameterId && isDuplicate) {
+            isDuplicate = false;
         }
     }
 }
 
-int Interpreter::findIndex2(std::vector<std::string> parameterStrings, std::string parameterId) {
-    bool second = false;
-    for (unsigned int i = 0; i < parameterStrings.size(); i++) {
-        if((parameterStrings.at(i) == parameterId) && second) {
-            return i;
-        }
-        else if ((parameterStrings.at(i) == parameterId) && !second) {
-            second = true;
-        }
-    }
-}
-
-bool Interpreter::checkDuplicates(std::vector<std::string> parameterStrings, std::string parameterId) {
+bool Interpreter::checkVector(std::vector<std::string> saveVars, std::string var) {
     //checks if there is a duplicate variable
-    int count = 0;
-    for (unsigned int i = 0; i < parameterStrings.size(); i++) {
-        if (parameterStrings.at(i) == parameterId) {
-            count++;
+    for (unsigned int i = 0; i < saveVars.size(); i++) {
+        if (saveVars.at(i) == var) {
+            return true;
         }
     }
 
-    if (count > 1)
-        return true;
-    else
-        return false;
+    return false;
+}
+
+int Interpreter::searchMap(std::map<int, std::string> saveVars, std::string var, int index) {
+    for(std::map<int, std::string>::iterator itr = saveVars.begin(); itr != saveVars.end(); itr++) {
+        if (itr->second == var && itr->first != index) {
+            return itr->first;
+        }
+    }
 }

@@ -13,13 +13,14 @@
 
 class Relation {
 private:
-    std::set<Tuple*> tuples;
+    std::set<Tuple> tuples;
     std::string name;
     Header* header;
 public:
     Relation(std::string name, Header* header);
-    void addTuple(Tuple* newTuple);
+    void addTuple(Tuple newTuple);
     std::string getName();
+    std::string getAttribute(int index);
 
     Relation* select(int index, std::string);
     Relation* select(int index1, int index2);

@@ -9,12 +9,16 @@ Relation::Relation(std::string name, Header* header) {
     this->header = header;
 }
 
-void Relation::addTuple(Tuple* newTuple) {
+void Relation::addTuple(Tuple newTuple) {
     tuples.insert(newTuple);
 }
 
 std::string Relation::getName() {
      return name;
+}
+
+std::string Relation::getAttribute(int index) {
+    return this->header->getValue(index);
 }
 
 Relation* Relation::select(int index, std::string value) {
@@ -28,10 +32,10 @@ Relation* Relation::select(int index, std::string value) {
     //the index tells you what index in the tuple to look at
     //look at every tuple, check the value of the column you are looking at
     //if it is the same as the value you are looking for, save the row to the new relation
-    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
-        currValue = (*itr)->getValue(index);
+    for (Tuple t : tuples) {
+        currValue = t.getValue(index);
         if (currValue == value) {
-            newRelation->addTuple(*itr);
+            newRelation->addTuple(t);
         }
     }
 
@@ -46,12 +50,12 @@ Relation* Relation::select(int index1, int index2) {
     std::string val2;
     Relation* newRelation = new Relation(this->name, this->header);
 
-    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
-        val1 = (*itr)->getValue(index1);
-        val2 = (*itr)->getValue(index2);
+    for (Tuple t : tuples) {
+        val1 = t.getValue(index1);
+        val2 = t.getValue(index2);
 
         if (val1 == val2) {
-            newRelation->addTuple(*itr);
+            newRelation->addTuple(t);
         }
     }
 
@@ -61,12 +65,12 @@ Relation* Relation::select(int index1, int index2) {
 Relation* Relation::project(std::vector<int> indices) {
     //go through the tuples and keep the values at the indexes that are in the vector
     //need to edit the header, go through the header and copy the attributes that you want into a new header
-    Tuple* newTuple;
+    Tuple newTuple;
     Header* newHeader = this->header->projectHeader(indices);
     Relation* newRelation = new Relation(this->name, newHeader);
 
-    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
-        newTuple = (*itr)->projectTuple(indices);
+    for (Tuple t : tuples) {
+        newTuple = t.projectTuple(indices);
         newRelation->addTuple(newTuple);
     }
 
@@ -82,8 +86,8 @@ Relation* Relation::rename(std::vector<std::string> newAttributes) {
     //create the new relation
     Relation* newRelation = new Relation(this->name, newHeader);
     //take the tuples from this relation and add them to the new one
-    for (std::set<Tuple*>::iterator itr = tuples.begin(); itr != tuples.end(); itr++) {
-        newRelation->addTuple(*itr);
+    for (Tuple t : tuples) {
+        newRelation->addTuple(t);
     }
     return newRelation;
 }
@@ -91,13 +95,13 @@ Relation* Relation::rename(std::vector<std::string> newAttributes) {
 void Relation::toString() {
     int headerIndex;
 
-    for(Tuple* t : tuples) {
+    for(Tuple t : tuples) {
         headerIndex = 0;
         while (headerIndex < header->getSize()) {
             if ((headerIndex + 1) != header->getSize()) {
-                std::cout << header->getValue(headerIndex) << "=" << t->getValue(headerIndex) << ", ";
+                std::cout << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << ", ";
             } else {
-                std::cout << header->getValue(headerIndex) << "=" << t->getValue(headerIndex) << std::endl;
+                std::cout << header->getValue(headerIndex) << "=" << t.getValue(headerIndex) << std::endl;
             }
             headerIndex++;
         }

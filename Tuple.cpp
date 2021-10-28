@@ -16,12 +16,12 @@ void Tuple::addValue(std::string value) {
     values.push_back(value);
 }
 
-Tuple* Tuple::projectTuple(std::vector<int> indices) {
-    Tuple* newTuple = new Tuple();
+Tuple Tuple::projectTuple(std::vector<int> indices) {
+    Tuple newTuple = Tuple();
     for (unsigned int i = 0; i < values.size(); i++) {
-        for (unsigned int j = 0; j < indices.size(); i++) {
+        for (unsigned int j = 0; j < indices.size(); j++) {
             if (i == indices.at(j)) {
-                newTuple->addValue(values.at(i));
+                newTuple.addValue(values.at(i));
             }
         }
     }
