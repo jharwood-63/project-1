@@ -18,8 +18,10 @@ void Tuple::addValue(std::string value) {
 
 Tuple Tuple::projectTuple(std::vector<int> indices) {
     Tuple newTuple = Tuple();
-    for (unsigned int i = 0; i < values.size(); i++) {
-        for (unsigned int j = 0; j < indices.size(); j++) {
+    int valueSize = values.size();
+    int indexSize = indices.size();
+    for (int i = 0; i < valueSize; i++) {
+        for (int j = 0; j < indexSize; j++) {
             if (i == indices.at(j)) {
                 newTuple.addValue(values.at(i));
             }

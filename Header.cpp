@@ -19,8 +19,10 @@ void Header::addAttribute(std::string attribute) {
 Header* Header::projectHeader(std::vector<int> indices) {
     //go though this header and copy the attributes that you want into a new header
     Header* newHeader = new Header();
-    for (unsigned int i = 0; i < attributes.size(); i++) {
-        for (unsigned int j = 0; j < indices.size(); j++) {
+    int attributeSize = attributes.size();
+    int indicesSize = indices.size();
+    for (int i = 0; i < attributeSize; i++) {
+        for (int j = 0; j < indicesSize; j++) {
             if (i == indices.at(j)) {
                 newHeader->addAttribute(attributes.at(i));
             }

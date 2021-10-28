@@ -23,7 +23,7 @@ void Interpreter::createRelations() {
         currScheme = datalogProgram->schemes.at(i);
         newHeader = new Header();
         headerSize = currScheme->getSize(); //get size refers to the number of parameters, may need to rename it
-        for (unsigned int j = 0; j < headerSize; j++) {
+        for (int j = 0; j < headerSize; j++) {
             newHeader->addAttribute(currScheme->getParameter(j));
         }
         //create the relation
@@ -43,7 +43,7 @@ void Interpreter::createTuples() {
         currFact = datalogProgram->facts.at(i);
         currFactName = currFact->getId();
         Tuple newTuple = Tuple();
-        for (unsigned int j = 0; j < currFact->getSize(); j++) {
+        for (int j = 0; j < currFact->getSize(); j++) {
             newTuple.addValue(currFact->getParameter(j));
         }
         //look through relations to find the correct one and add the tuple to it
@@ -70,7 +70,7 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
     Relation* relation = findRelation(predicate);
     //Relation* newRelation = relation;
     //look through the parameters
-    for (unsigned int i = 0; i < predicate->getSize(); i++) {
+    for (int i = 0; i < predicate->getSize(); i++) {
         currParameter = parameterStrings.at(i);
         isConstant = setConstant(currParameter);
         if (isConstant) {
@@ -132,7 +132,8 @@ bool Interpreter::setConstant(std::string parameterId) {
 
 int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::string parameterId, bool isDuplicate) {
     //look through the list
-    for (unsigned int i = 0; i < parameterStrings.size(); i++) {
+    int parameterSize = parameterStrings.size();
+    for (int i = 0; i < parameterSize; i++) {
         if (parameterStrings.at(i) == parameterId && !isDuplicate) {
             return i;
         }
@@ -166,7 +167,7 @@ int Interpreter::searchMap(std::map<int, std::string> saveVars, std::string var,
 
 bool Interpreter::checkAllConst(Predicate* query) {
     int count = 0;
-    for (unsigned int i = 0; i < query->getSize(); i++) {
+    for (int i = 0; i < query->getSize(); i++) {
         if (query->getParameters().at(i).substr(0, 1) == "\'") {
             count++;
         }
