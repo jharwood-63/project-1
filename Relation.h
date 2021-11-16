@@ -8,6 +8,7 @@
 #include "Tuple.h"
 #include "Header.h"
 #include <set>
+#include <map>
 #include <string>
 #include <iostream>
 
@@ -16,6 +17,9 @@ private:
     std::set<Tuple> tuples;
     std::string name;
     Header* header;
+
+    Header* combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
+    bool isJoinable(Tuple* t1, Tuple* t2, int index1, int index2);
 public:
     Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
@@ -27,6 +31,7 @@ public:
     Relation* select(int index1, int index2);
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> newAttributes);
+    Relation* join(Relation* r2, std::string ruleName);
 
     void toString();
 };

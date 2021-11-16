@@ -32,7 +32,6 @@ Relation* Relation::select(int index, std::string value) {
     Relation* newRelation = new Relation(this->name, this->header);
 
     //this is the column that we are looking at
-    //std::string attribute = this->header->getValue(index);
     //the index tells you what index in the tuple to look at
     //look at every tuple, check the value of the column you are looking at
     //if it is the same as the value you are looking for, save the row to the new relation
@@ -94,6 +93,43 @@ Relation* Relation::rename(std::vector<std::string> newAttributes) {
         newRelation->addTuple(t);
     }
     return newRelation;
+}
+
+Relation* Relation::join(Relation* r2, std::string ruleName) {
+    //r1 is this->relation, r2 is the parameter
+    //make the header for the result of the relation (no duplicate attributes)
+    std::vector<std::pair<unsigned int, unsigned int> > attributeIndices;
+    Header* newHeader = combineHeader(r2->header, attributeIndices);
+    //make a new empty relation using the new header
+    Relation* newRelation = new Relation(ruleName, newHeader);
+
+    for(Tuple t1 : this->tuples) {
+        for(Tuple t2 : r2->tuples) {
+            //if can be joined, do it
+                //add the tuple to the newRelation
+        }
+    }
+}
+
+Header* Relation::combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> >  attributeIndices) {
+    // create a new header
+    // add all the attributes to it without duplicates
+
+    Header* newHeader = this->header;
+
+    for (unsigned int i = 0; i < headB->getSize(); i++) {
+        int headerAIndex = newHeader->find(headB->getValue(i));
+        if (headerAIndex != -1) {
+            //create a pair <headerAIndex, i>
+            //add it to the vector
+        }
+    }
+
+    return newHeader;
+}
+
+bool Relation::isJoinable(Tuple *t1, Tuple *t2, int index1, int index2) {
+
 }
 
 void Relation::toString() {

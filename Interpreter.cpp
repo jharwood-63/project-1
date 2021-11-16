@@ -69,7 +69,6 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
 
     //grab the relation with the same name as the query
     Relation* relation = findRelation(predicate);
-    //Relation* newRelation = relation;
     //look through the parameters
     for (int i = 0; i < predicate->getSize(); i++) {
         currParameter = parameterStrings.at(i);
@@ -139,11 +138,6 @@ int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::strin
         if (parameterStrings.at(i) == parameterId && (i > prevIndex)) {
             return i;
         }
-        /*
-        else if (parameterStrings.at(i) == parameterId && isDuplicate) {
-            isDuplicate = false;
-        }
-         */
     }
     return -1;
 }

@@ -31,3 +31,12 @@ Header* Header::projectHeader(std::vector<int> indices) {
 
     return newHeader;
 }
+
+int Header::find(std::string attribute) {
+    for (unsigned int i = 0; i < attributes.size(); i++) {
+        if (attributes.at(i) == attribute) {
+            return i;
+        }
+    }
+    return -1;
+}

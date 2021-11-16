@@ -1,0 +1,12 @@
+Schemes:
+  Student(name, age, class)
+Facts:
+  Student('Sean','21','Sophomore').
+  Student('Arthur','19','Freshman').
+  Student('Sidney','19','Sophomore').
+  Student('Nicole','23','Senior').
+Rules:
+Queries:
+  Student(A,'19',B)?
+  Student(M,M,M)?
+  Student('Nicole',howOld,'Senior')?

@@ -16,6 +16,7 @@ public:
     std::string getValue(int index);
     void addAttribute(std::string attribute);
     Header* projectHeader(std::vector<int> indices);
+    int find(std::string attribute);
 };
 
 
