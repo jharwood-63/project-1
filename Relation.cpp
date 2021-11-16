@@ -98,38 +98,60 @@ Relation* Relation::rename(std::vector<std::string> newAttributes) {
 Relation* Relation::join(Relation* r2, std::string ruleName) {
     //r1 is this->relation, r2 is the parameter
     //make the header for the result of the relation (no duplicate attributes)
-    std::vector<std::pair<unsigned int, unsigned int> > attributeIndices;
+    std::vector<std::pair<int, int> > attributeIndices;
     Header* newHeader = combineHeader(r2->header, attributeIndices);
+    unsigned int index = 0;
     //make a new empty relation using the new header
     Relation* newRelation = new Relation(ruleName, newHeader);
-
     for(Tuple t1 : this->tuples) {
         for(Tuple t2 : r2->tuples) {
-            //if can be joined, do it
-                //add the tuple to the newRelation
+            while (index < attributeIndices.size()) {
+                if (isJoinable(t1, t2, attributeIndices.at(index).first, attributeIndices.at(index).second)) {
+                    //join the tuples
+                    //add to the relation
+                    newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
+                }
+                index++;
+            }
         }
     }
 }
 
-Header* Relation::combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> >  attributeIndices) {
-    // create a new header
-    // add all the attributes to it without duplicates
+Relation* Relation::unite(Relation* ruleResult) {
+    //this->relation is database relation, ruleResult is the result of the rule
 
+}
+
+Header* Relation::combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices) {
     Header* newHeader = this->header;
-
     for (unsigned int i = 0; i < headB->getSize(); i++) {
-        int headerAIndex = newHeader->find(headB->getValue(i));
+        //this might need to be newHeader->find
+        int headerAIndex = this->header->find(headB->getValue(i));
         if (headerAIndex != -1) {
-            //create a pair <headerAIndex, i>
-            //add it to the vector
+            std::pair<int, int> newPair(headerAIndex, i);
+            attributeIndices.push_back(newPair);
         }
     }
 
     return newHeader;
 }
 
-bool Relation::isJoinable(Tuple *t1, Tuple *t2, int index1, int index2) {
+bool Relation::isJoinable(Tuple t1, Tuple t2, int index1, int index2) {
+    if (t1.getValue(index1) == t2.getValue(index2))
+        return true;
+    else
+        return false;
+}
 
+Tuple Relation::joinTuple(Tuple t1, Tuple t2, int index2) {
+    Tuple newTuple = t1;
+    int size2 = t2.getSize();
+    for (unsigned int i = 0; i < size2; i++) {
+        if (i != index2)
+            newTuple.addValue(t2.getValue(i));
+    }
+
+    return newTuple;
 }
 
 void Relation::toString() {

@@ -10,9 +10,11 @@
 
 class Rule {
 public:
-    //Rule(Predicate* headPredicate);
     void addBodyPredicates(Predicate* predicate);
     void setHeadPredicate(Predicate* headPredicate);
+    Predicate* getHeadPredicate();
+    Predicate* getBodyPredicate(int index);
+    int getBodyPredicateSize();
     std::string toString();
 private:
     Predicate* headPredicate;

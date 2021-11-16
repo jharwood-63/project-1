@@ -18,6 +18,7 @@ private:
     void createRelations();
     void createTuples();
     Relation* evaluatePredicate(Predicate* predicate);
+    void evaluateRightPredicates(Predicate* bodyPredicate);
 
     Relation* findRelation(Predicate* p);
     bool setConstant(std::string parameterId);
@@ -31,6 +32,7 @@ public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 
     void evaluateQueries();
+    void evaluateRules();
 };
 
 

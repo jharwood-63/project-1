@@ -30,3 +30,7 @@ Tuple Tuple::projectTuple(std::vector<int> indices) {
 
     return newTuple;
 }
+
+int Tuple::getSize() {
+    return values.size();
+}

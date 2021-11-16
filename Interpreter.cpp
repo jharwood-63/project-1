@@ -115,6 +115,26 @@ void Interpreter::evaluateQueries() {
     }
 }
 
+void Interpreter::evaluateRules() {
+    //split it up into different functions
+    /*
+     * Evaluate the predicates on the right-hand side of the rule
+     * Join the relations that result
+     * Project the columns that appear in the head predicate
+     * Rename the relation to make it union-compatible
+     * Union with the relation in the database
+     */
+    Relation* result;
+    std::vector<Rule*> rules = datalogProgram->rules;
+    for (unsigned int i = 0; i < rules.size(); i++) {
+
+    }
+}
+
+void Interpreter::evaluateRightPredicates(Predicate *bodyPredicate) {
+
+}
+
 Relation* Interpreter::findRelation(Predicate* p) {
     for (std::map<std::string, Relation*>::iterator itr = database->dataMap.begin(); itr != database->dataMap.end(); itr++) {
         if (p->getId() == itr->second->getName()) {

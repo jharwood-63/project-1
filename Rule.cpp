@@ -16,6 +16,18 @@ void Rule::setHeadPredicate(Predicate* headPredicate) {
     this->headPredicate = headPredicate;
 }
 
+Predicate* Rule::getHeadPredicate() {
+    return headPredicate;
+}
+
+Predicate* Rule::getBodyPredicate(int index) {
+    return bodyPredicates.at(index);
+}
+
+int Rule::getBodyPredicateSize() {
+    return bodyPredicates.size();
+}
+
 std::string Rule::toString() {
     std::string ruleString = headPredicate->toString() + " :- ";
     for (unsigned int i = 0; i < bodyPredicates.size(); i++) {

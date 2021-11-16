@@ -16,6 +16,7 @@ public:
     void addValue(std::string value);
     bool operator< (const Tuple &rhs) const;
     Tuple projectTuple(std::vector<int> indices);
+    int getSize();
 };
 
 

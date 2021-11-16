@@ -18,8 +18,9 @@ private:
     std::string name;
     Header* header;
 
-    Header* combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
-    bool isJoinable(Tuple* t1, Tuple* t2, int index1, int index2);
+    Header* combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices);
+    bool isJoinable(Tuple t1, Tuple t2, int index1, int index2);
+    Tuple joinTuple(Tuple t1, Tuple t2, int index2);
 public:
     Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
@@ -32,6 +33,7 @@ public:
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> newAttributes);
     Relation* join(Relation* r2, std::string ruleName);
+    Relation* unite(Relation* ruleResult);
 
     void toString();
 };
