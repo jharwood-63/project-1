@@ -25,6 +25,14 @@ int Relation::getRowSize() {
     return tuples.size();
 }
 
+int Relation::getHeaderSize() {
+    return header->getSize();
+}
+
+std::set<Tuple> Relation::getTuples() {
+    return this->tuples;
+}
+
 Relation* Relation::select(int index, std::string value) {
     //so the index is the column that you want to look at and the value is the value in that column that you want to look for
     //the attributes shouldn't change right?
@@ -72,10 +80,18 @@ Relation* Relation::project(std::vector<int> indices) {
     Header* newHeader = this->header->projectHeader(indices);
     Relation* newRelation = new Relation(this->name, newHeader);
 
+    //check if you need to switch the order, the indices should be in numerical order
+    //if not in order -> switch the tuples so that they follow the header
+    //give the index vector to the function
+
+    //switchAttributeOrder(indices);
+
     for (Tuple t : tuples) {
         newTuple = t.projectTuple(indices);
         newRelation->addTuple(newTuple);
     }
+
+    switchAttributeOrder(indices, newRelation);
 
     return newRelation;
 }
@@ -105,21 +121,42 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     Relation* newRelation = new Relation(ruleName, newHeader);
     for(Tuple t1 : this->tuples) {
         for(Tuple t2 : r2->tuples) {
-            while (index < attributeIndices.size()) {
-                if (isJoinable(t1, t2, attributeIndices.at(index).first, attributeIndices.at(index).second)) {
-                    //join the tuples
-                    //add to the relation
-                    newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
-                }
-                index++;
+            //this isnt right, it cant be the attributeIndices size
+            //what if we put the loop inside the is joinable
+            if (isJoinable(t1, t2, attributeIndices)) {
+                //join the tuples
+                //add to the relation
+                newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
             }
         }
     }
-}
 
+    return newRelation;
+}
+/*
 Relation* Relation::unite(Relation* ruleResult) {
     //this->relation is database relation, ruleResult is the result of the rule
 
+}
+*/
+
+void Relation::switchAttributeOrder(std::vector<int> indices, Relation* newRelation) {
+    //they dont need to be sorted, you just have to know if they are out of order
+    //store the index of the attributes that are a different order?
+    std::vector<int> switchIndex;
+    for (unsigned int i = 0; i < indices.size(); i++) {
+        if ((indices.at(i) != indices.size() - 1) && indices.at(i) > indices.at(i + 1)) {
+            switchIndex.push_back(i);
+        }
+    }
+
+    for (unsigned int i = 0; i < switchIndex.size(); i++) {
+        for (Tuple t : tuples) {
+            std::string temp = t.getValue(indices.at(switchIndex.at(i)));
+            t.getValue(indices.at(switchIndex.at(i))) = t.getValue(indices.at(switchIndex.at(i) + 1));
+            t.getValue(indices.at(switchIndex.at(i) + 1)) = temp;
+        }
+    }
 }
 
 Header* Relation::combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices) {
@@ -131,13 +168,22 @@ Header* Relation::combineHeader(Header* headB, std::vector<std::pair<int, int> >
             std::pair<int, int> newPair(headerAIndex, i);
             attributeIndices.push_back(newPair);
         }
+        else {
+            newHeader->addAttribute(headB->getValue(i));
+        }
     }
 
     return newHeader;
 }
 
-bool Relation::isJoinable(Tuple t1, Tuple t2, int index1, int index2) {
-    if (t1.getValue(index1) == t2.getValue(index2))
+bool Relation::isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<int, int> > attributeIndices) {
+    int count = 0;
+    for (unsigned int i = 0; i < attributeIndices.size(); i++) {
+        if (t1.getValue(attributeIndices.at(i).first) == t2.getValue(attributeIndices.at(i).second))
+            count++;
+    }
+
+    if (count == attributeIndices.size())
         return true;
     else
         return false;

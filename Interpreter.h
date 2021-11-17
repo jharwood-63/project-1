@@ -18,11 +18,12 @@ private:
     void createRelations();
     void createTuples();
     Relation* evaluatePredicate(Predicate* predicate);
-    void evaluateRightPredicates(Predicate* bodyPredicate);
+    //std::vector<Relation*> evaluateRightPredicates(Predicate* bodyPredicate);
 
     Relation* findRelation(Predicate* p);
     bool setConstant(std::string parameterId);
     int findIndex(std::vector<std::string> parameterStrings, std::string parameterId, int prevIndex);
+    std::vector<int> createIndexList(Relation* joinedRelation, Predicate* headPredicate);
     int searchMap(std::map<int, std::string> saveVars, std::string var, int index);
     bool checkVector(std::vector<std::string> saveVars, std::string var);
     bool checkAllConst(Predicate* query);

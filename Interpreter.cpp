@@ -126,15 +126,36 @@ void Interpreter::evaluateRules() {
      */
     Relation* result;
     std::vector<Rule*> rules = datalogProgram->rules;
+    std::vector<Relation*> interResults;
     for (unsigned int i = 0; i < rules.size(); i++) {
+        unsigned int size = rules.at(i)->getBodyPredicateSize();
+        std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
+        //evaluate predicates on the right side of the rule
+        for(unsigned int j = 0; j < size; j++) {
+            Relation* newRelation = evaluatePredicate(rules.at(i)->getBodyPredicate(j));
+            interResults.push_back(newRelation);
+        }
+        //join the relations that result
+        result = interResults.at(0);
+        for (unsigned int j = 1; j < size; j++) {
+            result = result->join(interResults.at(j), ruleName);
+        }
+        //project using the head predicate parameters
+        //project needs a way to reorder the attributes and columns, im thinking maybe if the indices in the vector are out of order
+        //thats how you know that you need to reorder the attributes
+        //to find the indices take one parameter of the rule and look through the header of the joined relation and save that index
+        result = result->project(createIndexList(result, rules.at(i)->getHeadPredicate()));
 
     }
 }
+/*
+std::vector<Relation*> Interpreter::evaluateRightPredicates(Predicate *bodyPredicate) {
+    //store all the results
+    std::vector<Relation*> interResults;
 
-void Interpreter::evaluateRightPredicates(Predicate *bodyPredicate) {
 
 }
-
+*/
 Relation* Interpreter::findRelation(Predicate* p) {
     for (std::map<std::string, Relation*>::iterator itr = database->dataMap.begin(); itr != database->dataMap.end(); itr++) {
         if (p->getId() == itr->second->getName()) {
@@ -160,6 +181,20 @@ int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::strin
         }
     }
     return -1;
+}
+
+std::vector<int> Interpreter::createIndexList(Relation *joinedRelation, Predicate* headPredicate) {
+    std::vector<int> indices;
+    for (unsigned int i = 0; i < headPredicate->getSize(); i++) {
+        std::string attribute = headPredicate->getParameter(i);
+        for (unsigned int j = 0; j < joinedRelation->getHeaderSize(); j++) {
+            if (joinedRelation->getAttribute(j) == attribute) {
+                indices.push_back(j);
+                break;
+            }
+        }
+    }
+    return indices;
 }
 
 bool Interpreter::checkVector(std::vector<std::string> saveVars, std::string var) {

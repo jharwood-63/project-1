@@ -19,21 +19,24 @@ private:
     Header* header;
 
     Header* combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices);
-    bool isJoinable(Tuple t1, Tuple t2, int index1, int index2);
+    bool isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<int, int> > attributeIndices);
     Tuple joinTuple(Tuple t1, Tuple t2, int index2);
+    void switchAttributeOrder(std::vector<int> indices, Relation* newRelation);
 public:
     Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
     std::string getName();
     std::string getAttribute(int index);
     int getRowSize();
+    int getHeaderSize();
+    std::set<Tuple> getTuples();
 
     Relation* select(int index, std::string);
     Relation* select(int index1, int index2);
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> newAttributes);
     Relation* join(Relation* r2, std::string ruleName);
-    Relation* unite(Relation* ruleResult);
+    //Relation* unite(Relation* ruleResult);
 
     void toString();
 };
