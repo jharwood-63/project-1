@@ -132,9 +132,10 @@ void Interpreter::evaluateRules() {
     std::vector<Relation*> interResults;
     std::cout << "Rule Evaluation" << std::endl;
     do {
+        changes = 0;
         for (unsigned int i = 0; i < rules.size(); i++) {
             toString(rules.at(i));
-            changes = 0;
+            //changes = 0;
             unsigned int size = rules.at(i)->getBodyPredicateSize();
             std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
             //evaluate predicates on the right side of the rule

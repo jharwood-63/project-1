@@ -116,17 +116,21 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     //make the header for the result of the relation (no duplicate attributes)
     std::vector<std::pair<int, int> > attributeIndices;
     Header* newHeader = combineHeader(r2->header, attributeIndices);
-    unsigned int index = 0;
+    unsigned int index;
     //make a new empty relation using the new header
     Relation* newRelation = new Relation(ruleName, newHeader);
     for(Tuple t1 : this->tuples) {
+        index = 0;
         for(Tuple t2 : r2->tuples) {
-            //this isnt right, it cant be the attributeIndices size
-            //what if we put the loop inside the is joinable
             if (isJoinable(t1, t2, attributeIndices)) {
-                //join the tuples
-                //add to the relation
-                newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
+                if (attributeIndices.size() == 0)
+                    newRelation->addTuple(joinTuple(t1, t2, -1));
+                else
+                    newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
+
+                if ((index + 1) != attributeIndices.size()) {
+                    index++;
+                }
             }
         }
     }
