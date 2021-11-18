@@ -20,8 +20,9 @@ private:
 
     Header* combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> > &attributeIndices);
     bool isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
-    Tuple joinTuple(Tuple t1, Tuple t2, int index2);
+    Tuple joinTuple(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
     bool needsReorder(std::vector<int> indices);
+    bool isInList(int index, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
     void toString(Tuple printTuple);
 public:
     Relation(std::string name, Header* header);

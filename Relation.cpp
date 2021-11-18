@@ -122,15 +122,7 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     for(Tuple t1 : this->tuples) {
         for(Tuple t2 : r2->tuples) {
             if (isJoinable(t1, t2, attributeIndices)) {
-                if (attributeIndices.size() == 0) {
-                    newRelation->addTuple(joinTuple(t1, t2, -1));
-                } else {
-                    index = 0;
-                    while (index < attributeIndices.size()) {
-                        newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
-                        index++;
-                    }
-                }
+                newRelation->addTuple(joinTuple(t1, t2, attributeIndices));
             }
         }
     }
@@ -185,15 +177,31 @@ bool Relation::isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int
         return false;
 }
 
-Tuple Relation::joinTuple(Tuple t1, Tuple t2, int index2) {
+Tuple Relation::joinTuple(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices) {
+    //I found the problem, you need to check all of the columns in this function
     Tuple newTuple = t1;
     int size2 = t2.getSize();
     for (int i = 0; i < size2; i++) {
-        if (i != index2)
+        if (attributeIndices.size() != 0) {
+            if (!isInList(i, attributeIndices)) {
+                newTuple.addValue(t2.getValue(i));
+            }
+        }
+        else {
             newTuple.addValue(t2.getValue(i));
+        }
     }
 
     return newTuple;
+}
+
+bool Relation::isInList(int index, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices) {
+    for (unsigned int i = 0; i < attributeIndices.size(); i++) {
+        if (index == attributeIndices.at(i).second) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void Relation::toString() {
