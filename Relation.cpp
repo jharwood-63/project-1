@@ -197,7 +197,7 @@ Tuple Relation::joinTuple(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int
 bool Relation::isInList(int index, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices) {
     int size = attributeIndices.size();
     for (int i = 0; i < size; i++) {
-        if (index == attributeIndices.at(i).second) {
+        if ((unsigned)index == attributeIndices.at(i).second) {
             return true;
         }
     }
