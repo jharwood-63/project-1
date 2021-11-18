@@ -29,6 +29,7 @@ private:
     bool checkAllConst(Predicate* query);
 
     void toString(Predicate* query, Relation* relation);
+    void toString(Rule* rule);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 

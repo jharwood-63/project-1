@@ -106,6 +106,7 @@ Relation* Interpreter::evaluatePredicate(Predicate* predicate) {
 
 void Interpreter::evaluateQueries() {
     Relation* output;
+    std::cout << "Query Evaluation" << std::endl;
     std::vector<Predicate*> queries = datalogProgram->queries;
     for (unsigned int i = 0; i < queries.size(); i++) {
         Predicate* query = queries.at(i);
@@ -125,12 +126,13 @@ void Interpreter::evaluateRules() {
      */
     Relation* result;
     int changes;
+    int iterations = 0;
     std::vector<Rule*> rules = datalogProgram->rules;
     std::vector<Predicate*> schemes = datalogProgram->schemes;
     std::vector<Relation*> interResults;
     do {
-        changes = 0;
         for (unsigned int i = 0; i < rules.size(); i++) {
+            changes = 0;
             unsigned int size = rules.at(i)->getBodyPredicateSize();
             std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
             //evaluate predicates on the right side of the rule
@@ -166,6 +168,7 @@ void Interpreter::evaluateRules() {
                 }
             }
             dataRelation->unite(result, changes);
+            iterations++;
         }
     } while (changes != 0);
 }
@@ -259,6 +262,13 @@ void Interpreter::toString(Predicate *query, Relation *relation) {
         std::cout << query->toString() << " No\n";
     }
 
+}
+
+void Interpreter::toString(Rule* rule) {
+    std::cout << rule->getHeadPredicate()->getId() << "(";
+    for (unsigned int i = 0; i < rule->getHeadPredicate()->getSize(); i++) {
+        
+    }
 }
 
 
