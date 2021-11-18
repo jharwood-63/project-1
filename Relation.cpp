@@ -85,7 +85,7 @@ Relation* Relation::project(std::vector<int> indices) {
     //need to edit the header, go through the header and copy the attributes that you want into a new header
     bool reorder = needsReorder(indices);
     Tuple newTuple;
-    Header* newHeader = this->header->projectHeader(indices);
+    Header* newHeader = this->header->projectHeader(indices, reorder);
     Relation* newRelation = new Relation(this->name, newHeader);
 
     for (Tuple t : tuples) {
