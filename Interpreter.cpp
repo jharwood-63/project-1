@@ -136,7 +136,7 @@ void Interpreter::evaluateRules() {
         for (unsigned int i = 0; i < rules.size(); i++) {
             toString(rules.at(i));
             //changes = 0;
-            unsigned int size = rules.at(i)->getBodyPredicateSize();
+            int size = rules.at(i)->getBodyPredicateSize();
             std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
             //evaluate predicates on the right side of the rule
             for (int j = 0; j < size; j++) {
