@@ -1,0 +1,13 @@
+Rule Evaluation
+R(I,J) :- R(I,Z),E(Z,J).
+  T='1', U='2'
+R(I,J) :- R(I,Z),E(Z,J).
+  T='1', U='3'
+R(I,J) :- R(I,Z),E(Z,J).
+  T='1', U='4'
+R(I,J) :- R(I,Z),E(Z,J).
+
+Schemes populated after 4 passes through the Rules.
+
+Query Evaluation
+R('1','4')? Yes(1)

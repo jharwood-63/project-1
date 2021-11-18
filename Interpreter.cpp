@@ -116,7 +116,6 @@ void Interpreter::evaluateQueries() {
 }
 
 void Interpreter::evaluateRules() {
-    //split it up into different functions
     /*
      * Evaluate the predicates on the right-hand side of the rule
      * Join the relations that result
@@ -125,47 +124,52 @@ void Interpreter::evaluateRules() {
      * Union with the relation in the database
      */
     Relation* result;
+    int changes;
     std::vector<Rule*> rules = datalogProgram->rules;
     std::vector<Predicate*> schemes = datalogProgram->schemes;
     std::vector<Relation*> interResults;
-    for (unsigned int i = 0; i < rules.size(); i++) {
-        unsigned int size = rules.at(i)->getBodyPredicateSize();
-        std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
-        //evaluate predicates on the right side of the rule
-        for(unsigned int j = 0; j < size; j++) {
-            Relation* newRelation = evaluatePredicate(rules.at(i)->getBodyPredicate(j));
-            interResults.push_back(newRelation);
-        }
-        //join the relations that result
-        result = interResults.at(0);
-        for (unsigned int j = 1; j < size; j++) {
-            result = result->join(interResults.at(j), ruleName);
-        }
-        //project using the head predicate parameters
-        std::vector<int> indexList = createIndexList(result, rules.at(i)->getHeadPredicate());
-        result = result->project(indexList);
-
-        //rename to the orignal parameter names from the scheme
-        //find the correct scheme, pass in the parameters to rename
-        Predicate* scheme;
-        for (unsigned int i = 0; i < schemes.size(); i++) {
-            if (schemes.at(i)->getId() == ruleName) {
-                scheme = schemes.at(i);
-                break;
+    do {
+        changes = 0;
+        for (unsigned int i = 0; i < rules.size(); i++) {
+            unsigned int size = rules.at(i)->getBodyPredicateSize();
+            std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
+            //evaluate predicates on the right side of the rule
+            for (unsigned int j = 0; j < size; j++) {
+                Relation *newRelation = evaluatePredicate(rules.at(i)->getBodyPredicate(j));
+                interResults.push_back(newRelation);
             }
+            //join the relations that result
+            result = interResults.at(0);
+            for (unsigned int j = 1; j < size; j++) {
+                result = result->join(interResults.at(j), ruleName);
+            }
+            interResults.clear();
+            //project using the head predicate parameters
+            std::vector<int> indexList = createIndexList(result, rules.at(i)->getHeadPredicate());
+            result = result->project(indexList);
+            //rename to the orignal parameter names from the scheme
+            Predicate *scheme;
+            for (unsigned int i = 0; i < schemes.size(); i++) {
+                if (schemes.at(i)->getId() == ruleName) {
+                    scheme = schemes.at(i);
+                    break;
+                }
+            }
+            result = result->rename(scheme->getParameters());
+            //union the result with the fact in the database
+            std::map<std::string, Relation *>::iterator it;
+            Relation *dataRelation;
+            for (it = database->dataMap.begin(); it != database->dataMap.end(); it++) {
+                if (it->first == ruleName) {
+                    dataRelation = it->second;
+                    break;
+                }
+            }
+            dataRelation->unite(result, changes);
         }
-        result->rename(scheme->getParameters());
-
-    }
+    } while (changes != 0);
 }
-/*
-std::vector<Relation*> Interpreter::evaluateRightPredicates(Predicate *bodyPredicate) {
-    //store all the results
-    std::vector<Relation*> interResults;
 
-
-}
-*/
 Relation* Interpreter::findRelation(Predicate* p) {
     for (std::map<std::string, Relation*>::iterator itr = database->dataMap.begin(); itr != database->dataMap.end(); itr++) {
         if (p->getId() == itr->second->getName()) {

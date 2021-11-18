@@ -1,0 +1,10 @@
+Rule Evaluation
+R(A,B,C) :- X(A),Y(B),Z(C).
+  a='1', b='2', c='3'
+R(A,B,C) :- X(A),Y(B),Z(C).
+
+Schemes populated after 2 passes through the Rules.
+
+Query Evaluation
+R(A,B,C)? Yes(1)
+  A='1', B='2', C='3'

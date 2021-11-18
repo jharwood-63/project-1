@@ -26,6 +26,7 @@ private:
 public:
     Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
+    void addTuple(Tuple newTuple, int &changes);
     std::string getName();
     std::string getAttribute(int index);
     int getRowSize();
@@ -37,7 +38,7 @@ public:
     Relation* project(std::vector<int> indices);
     Relation* rename(std::vector<std::string> newAttributes);
     Relation* join(Relation* r2, std::string ruleName);
-    Relation* unite(Relation* ruleResult);
+    void unite(Relation* ruleResult, int &changes);
 
     void toString();
 };

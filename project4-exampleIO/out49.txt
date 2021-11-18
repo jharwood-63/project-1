@@ -1,0 +1,105 @@
+Rule Evaluation
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+  x='a'
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+  x='a'
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+  x='a'
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+  x='a'
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+  x='a'
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+  x='a'
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+  x='a'
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+  x='a'
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+  x='a'
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+j(x) :- i(x).
+i(x) :- h(x).
+h(x) :- g(x).
+g(x) :- f(x).
+f(x) :- e(x).
+e(x) :- d(x).
+d(x) :- c(x).
+c(x) :- b(x).
+b(x) :- a(x).
+
+Schemes populated after 10 passes through the Rules.
+
+Query Evaluation
+j('a')? Yes(1)

@@ -13,6 +13,12 @@ void Relation::addTuple(Tuple newTuple) {
     tuples.insert(newTuple);
 }
 
+void Relation::addTuple(Tuple newTuple, int &changes) {
+    if (tuples.insert(newTuple).second) {
+        changes++;
+    }
+}
+
 std::string Relation::getName() {
      return name;
 }
@@ -127,9 +133,12 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     return newRelation;
 }
 
-Relation* Relation::unite(Relation* ruleResult) {
+void Relation::unite(Relation* ruleResult, int &changes) {
     //this->relation is database relation, ruleResult is the result of the rule
-
+    std::set<Tuple> ruleTuples = ruleResult->getTuples();
+    for (Tuple t : ruleTuples) {
+        this->addTuple(t, changes);
+    }
 }
 
 bool Relation::needsReorder(std::vector<int> indices) {
