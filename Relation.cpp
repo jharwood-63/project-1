@@ -157,7 +157,7 @@ bool Relation::needsReorder(std::vector<int> indices) {
 
 Header* Relation::combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices) {
     Header* newHeader = this->header;
-    for (unsigned int i = 0; i < headB->getSize(); i++) {
+    for (int i = 0; i < headB->getSize(); i++) {
         //this might need to be newHeader->find
         int headerAIndex = this->header->find(headB->getValue(i));
         if (headerAIndex != -1) {
@@ -188,7 +188,7 @@ bool Relation::isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<int, int> > 
 Tuple Relation::joinTuple(Tuple t1, Tuple t2, int index2) {
     Tuple newTuple = t1;
     int size2 = t2.getSize();
-    for (unsigned int i = 0; i < size2; i++) {
+    for (int i = 0; i < size2; i++) {
         if (i != index2)
             newTuple.addValue(t2.getValue(i));
     }

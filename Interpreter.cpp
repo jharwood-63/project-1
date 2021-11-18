@@ -139,7 +139,7 @@ void Interpreter::evaluateRules() {
             unsigned int size = rules.at(i)->getBodyPredicateSize();
             std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
             //evaluate predicates on the right side of the rule
-            for (unsigned int j = 0; j < size; j++) {
+            for (int j = 0; j < size; j++) {
                 Relation *newRelation = evaluatePredicate(rules.at(i)->getBodyPredicate(j));
                 interResults.push_back(newRelation);
             }
@@ -207,9 +207,9 @@ int Interpreter::findIndex(std::vector<std::string> parameterStrings, std::strin
 
 std::vector<int> Interpreter::createIndexList(Relation *joinedRelation, Predicate* headPredicate) {
     std::vector<int> indices;
-    for (unsigned int i = 0; i < headPredicate->getSize(); i++) {
+    for (int i = 0; i < headPredicate->getSize(); i++) {
         std::string attribute = headPredicate->getParameter(i);
-        for (unsigned int j = 0; j < joinedRelation->getHeaderSize(); j++) {
+        for (int j = 0; j < joinedRelation->getHeaderSize(); j++) {
             if (joinedRelation->getAttribute(j) == attribute) {
                 indices.push_back(j);
                 break;
@@ -273,18 +273,18 @@ void Interpreter::toString(Rule* rule) {
     Predicate* headPredicate = rule->getHeadPredicate();
     int headParamSize = headPredicate->getSize();
     std::cout << headPredicate->getId() << "(";
-    for (unsigned int i = 0; i < headParamSize; i++) {
+    for (int i = 0; i < headParamSize; i++) {
         if (i != headParamSize - 1)
             std::cout << headPredicate->getParameter(i) << ",";
         else
             std::cout << headPredicate->getParameter(i) << ") :- ";
     }
     int bodyPredicateSize = rule->getBodyPredicateSize();
-    for (unsigned int i = 0; i < bodyPredicateSize; i++) {
+    for (int i = 0; i < bodyPredicateSize; i++) {
         int bodyParamSize = rule->getBodyPredicate(i)->getSize();
         std::cout << rule->getBodyPredicate(i)->getId() << "(";
         if (i != bodyPredicateSize - 1) {
-            for (unsigned int j = 0; j < bodyParamSize; j++) {
+            for (int j = 0; j < bodyParamSize; j++) {
                 if (j != bodyParamSize - 1)
                     std::cout << rule->getBodyPredicate(i)->getParameter(j) << ",";
                 else
@@ -292,7 +292,7 @@ void Interpreter::toString(Rule* rule) {
             }
         }
         else {
-            for (unsigned int j = 0; j < bodyParamSize; j++) {
+            for (int j = 0; j < bodyParamSize; j++) {
                 if (j != bodyParamSize - 1)
                     std::cout << rule->getBodyPredicate(i)->getParameter(j) << ",";
                 else
