@@ -161,7 +161,7 @@ Header* Relation::combineHeader(Header* headB, std::vector<std::pair<unsigned in
         //this might need to be newHeader->find
         int headerAIndex = this->header->find(headB->getValue(i));
         if (headerAIndex != -1) {
-            std::pair<int, int> newPair(headerAIndex, i);
+            std::pair<unsigned int, unsigned int> newPair(headerAIndex, i);
             attributeIndices.push_back(newPair);
         }
         else {
@@ -173,7 +173,7 @@ Header* Relation::combineHeader(Header* headB, std::vector<std::pair<unsigned in
 }
 
 bool Relation::isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices) {
-    int count = 0;
+    unsigned int count = 0;
     for (unsigned int i = 0; i < attributeIndices.size(); i++) {
         if (t1.getValue(attributeIndices.at(i).first) == t2.getValue(attributeIndices.at(i).second))
             count++;
