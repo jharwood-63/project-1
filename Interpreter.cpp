@@ -130,8 +130,10 @@ void Interpreter::evaluateRules() {
     std::vector<Rule*> rules = datalogProgram->rules;
     std::vector<Predicate*> schemes = datalogProgram->schemes;
     std::vector<Relation*> interResults;
+    std::cout << "Rule Evaluation" << std::endl;
     do {
         for (unsigned int i = 0; i < rules.size(); i++) {
+            toString(rules.at(i));
             changes = 0;
             unsigned int size = rules.at(i)->getBodyPredicateSize();
             std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
@@ -168,9 +170,11 @@ void Interpreter::evaluateRules() {
                 }
             }
             dataRelation->unite(result, changes);
-            iterations++;
         }
+        iterations++;
     } while (changes != 0);
+
+    std::cout << "\nSchemes populated after " << iterations << " passes through the Rules.\n\n";
 }
 
 Relation* Interpreter::findRelation(Predicate* p) {
@@ -265,9 +269,36 @@ void Interpreter::toString(Predicate *query, Relation *relation) {
 }
 
 void Interpreter::toString(Rule* rule) {
-    std::cout << rule->getHeadPredicate()->getId() << "(";
-    for (unsigned int i = 0; i < rule->getHeadPredicate()->getSize(); i++) {
-        
+    Predicate* headPredicate = rule->getHeadPredicate();
+    int headParamSize = headPredicate->getSize();
+    std::cout << headPredicate->getId() << "(";
+    for (unsigned int i = 0; i < headParamSize; i++) {
+        if (i != headParamSize - 1)
+            std::cout << headPredicate->getParameter(i) << ",";
+        else
+            std::cout << headPredicate->getParameter(i) << ") :- ";
+    }
+    int bodyPredicateSize = rule->getBodyPredicateSize();
+    for (unsigned int i = 0; i < bodyPredicateSize; i++) {
+        int bodyParamSize = rule->getBodyPredicate(i)->getSize();
+        std::cout << rule->getBodyPredicate(i)->getId() << "(";
+        if (i != bodyPredicateSize - 1) {
+            for (unsigned int j = 0; j < bodyParamSize; j++) {
+                if (j != bodyParamSize - 1)
+                    std::cout << rule->getBodyPredicate(i)->getParameter(j) << ",";
+                else
+                    std::cout << rule->getBodyPredicate(i)->getParameter(j) << "),";
+            }
+        }
+        else {
+            for (unsigned int j = 0; j < bodyParamSize; j++) {
+                if (j != bodyParamSize - 1)
+                    std::cout << rule->getBodyPredicate(i)->getParameter(j) << ",";
+                else
+                    std::cout << rule->getBodyPredicate(i)->getParameter(j) << ").\n";
+            }
+        }
+
     }
 }
 

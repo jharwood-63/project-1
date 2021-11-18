@@ -1,0 +1,10 @@
+Rule Evaluation
+z(a,b,c,d) :- x(a,b,c),y(b,c,d).
+  A='2', B='2', C='2', D='4'
+z(a,b,c,d) :- x(a,b,c),y(b,c,d).
+
+Schemes populated after 2 passes through the Rules.
+
+Query Evaluation
+z(a,b,c,d)? Yes(1)
+  a='2', b='2', c='2', d='4'

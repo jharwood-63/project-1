@@ -16,6 +16,7 @@ void Relation::addTuple(Tuple newTuple) {
 void Relation::addTuple(Tuple newTuple, int &changes) {
     if (tuples.insert(newTuple).second) {
         changes++;
+        toString(newTuple);
     }
 }
 
@@ -204,6 +205,18 @@ void Relation::toString() {
             }
             headerIndex++;
         }
+    }
+}
+
+void Relation::toString(Tuple printTuple) {
+    int headerIndex;
+    headerIndex = 0;
+    while (headerIndex < header->getSize()) {
+        if ((headerIndex + 1) != header->getSize())
+            std::cout << "  " << header->getValue(headerIndex) << "=" << printTuple.getValue(headerIndex) << ", ";
+        else
+            std::cout << "  " << header->getValue(headerIndex) << "=" << printTuple.getValue(headerIndex) << std::endl;
+        headerIndex++;
     }
 }
 

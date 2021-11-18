@@ -1,0 +1,7 @@
+Rule Evaluation
+c(x) :- a(x,y),b(x,y).
+
+Schemes populated after 1 passes through the Rules.
+
+Query Evaluation
+c(x)? No

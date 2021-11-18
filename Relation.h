@@ -22,7 +22,7 @@ private:
     bool isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<int, int> > attributeIndices);
     Tuple joinTuple(Tuple t1, Tuple t2, int index2);
     bool needsReorder(std::vector<int> indices);
-    //void switchAttributeOrder(std::vector<int> indices, Relation* newRelation);
+    void toString(Tuple printTuple);
 public:
     Relation(std::string name, Header* header);
     void addTuple(Tuple newTuple);
