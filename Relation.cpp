@@ -76,22 +76,15 @@ Relation* Relation::select(int index1, int index2) {
 Relation* Relation::project(std::vector<int> indices) {
     //go through the tuples and keep the values at the indexes that are in the vector
     //need to edit the header, go through the header and copy the attributes that you want into a new header
+    bool reorder = needsReorder(indices);
     Tuple newTuple;
     Header* newHeader = this->header->projectHeader(indices);
     Relation* newRelation = new Relation(this->name, newHeader);
 
-    //check if you need to switch the order, the indices should be in numerical order
-    //if not in order -> switch the tuples so that they follow the header
-    //give the index vector to the function
-
-    //switchAttributeOrder(indices);
-
     for (Tuple t : tuples) {
-        newTuple = t.projectTuple(indices);
+        newTuple = t.projectTuple(indices, reorder);
         newRelation->addTuple(newTuple);
     }
-
-    switchAttributeOrder(indices, newRelation);
 
     return newRelation;
 }
@@ -133,30 +126,19 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
 
     return newRelation;
 }
-/*
+
 Relation* Relation::unite(Relation* ruleResult) {
     //this->relation is database relation, ruleResult is the result of the rule
 
 }
-*/
 
-void Relation::switchAttributeOrder(std::vector<int> indices, Relation* newRelation) {
-    //they dont need to be sorted, you just have to know if they are out of order
-    //store the index of the attributes that are a different order?
-    std::vector<int> switchIndex;
+bool Relation::needsReorder(std::vector<int> indices) {
     for (unsigned int i = 0; i < indices.size(); i++) {
-        if ((indices.at(i) != indices.size() - 1) && indices.at(i) > indices.at(i + 1)) {
-            switchIndex.push_back(i);
+        if ((i != indices.size() - 1) && indices.at(i) > indices.at(i + 1)) {
+            return true;
         }
     }
-
-    for (unsigned int i = 0; i < switchIndex.size(); i++) {
-        for (Tuple t : tuples) {
-            std::string temp = t.getValue(indices.at(switchIndex.at(i)));
-            t.getValue(indices.at(switchIndex.at(i))) = t.getValue(indices.at(switchIndex.at(i) + 1));
-            t.getValue(indices.at(switchIndex.at(i) + 1)) = temp;
-        }
-    }
+    return false;
 }
 
 Header* Relation::combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices) {

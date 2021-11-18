@@ -15,8 +15,9 @@ public:
     std::string getValue(int index);
     void addValue(std::string value);
     bool operator< (const Tuple &rhs) const;
-    Tuple projectTuple(std::vector<int> indices);
+    Tuple projectTuple(std::vector<int> indices, bool reorder);
     int getSize();
+    void switchTuple(int switchIndex, int next, std::vector<int> indices);
 };
 
 

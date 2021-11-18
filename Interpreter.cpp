@@ -126,6 +126,7 @@ void Interpreter::evaluateRules() {
      */
     Relation* result;
     std::vector<Rule*> rules = datalogProgram->rules;
+    std::vector<Predicate*> schemes = datalogProgram->schemes;
     std::vector<Relation*> interResults;
     for (unsigned int i = 0; i < rules.size(); i++) {
         unsigned int size = rules.at(i)->getBodyPredicateSize();
@@ -141,10 +142,19 @@ void Interpreter::evaluateRules() {
             result = result->join(interResults.at(j), ruleName);
         }
         //project using the head predicate parameters
-        //project needs a way to reorder the attributes and columns, im thinking maybe if the indices in the vector are out of order
-        //thats how you know that you need to reorder the attributes
-        //to find the indices take one parameter of the rule and look through the header of the joined relation and save that index
-        result = result->project(createIndexList(result, rules.at(i)->getHeadPredicate()));
+        std::vector<int> indexList = createIndexList(result, rules.at(i)->getHeadPredicate());
+        result = result->project(indexList);
+
+        //rename to the orignal parameter names from the scheme
+        //find the correct scheme, pass in the parameters to rename
+        Predicate* scheme;
+        for (unsigned int i = 0; i < schemes.size(); i++) {
+            if (schemes.at(i)->getId() == ruleName) {
+                scheme = schemes.at(i);
+                break;
+            }
+        }
+        result->rename(scheme->getParameters());
 
     }
 }

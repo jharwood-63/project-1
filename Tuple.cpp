@@ -16,15 +16,25 @@ void Tuple::addValue(std::string value) {
     values.push_back(value);
 }
 
-Tuple Tuple::projectTuple(std::vector<int> indices) {
+Tuple Tuple::projectTuple(std::vector<int> indices, bool reorder) {
     Tuple newTuple = Tuple();
     int valueSize = values.size();
     int indexSize = indices.size();
-    for (int i = 0; i < valueSize; i++) {
-        for (int j = 0; j < indexSize; j++) {
-            if (i == indices.at(j)) {
-                newTuple.addValue(values.at(i));
+
+    if (!reorder) {
+        for (int i = 0; i < valueSize; i++) {
+            for (int j = 0; j < indexSize; j++) {
+                if (i == indices.at(j)) {
+                    newTuple.addValue(values.at(i));
+                }
             }
+        }
+    }
+    else {
+        int index = 0;
+        while (index < indexSize) {
+            newTuple.addValue(values.at(indices.at(index)));
+            index++;
         }
     }
 
@@ -33,4 +43,10 @@ Tuple Tuple::projectTuple(std::vector<int> indices) {
 
 int Tuple::getSize() {
     return values.size();
+}
+
+void Tuple::switchTuple(int switchIndex, int next, std::vector<int> indices) {
+    std::string temp = values.at(indices.at(switchIndex));
+    values.at(indices.at(switchIndex)) = values.at(indices.at(next));
+    values.at(indices.at(next)) = temp;
 }
