@@ -116,7 +116,6 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     //make the header for the result of the relation (no duplicate attributes)
     std::vector<std::pair<unsigned int, unsigned int> > attributeIndices;
     Header* newHeader = combineHeader(r2->header, attributeIndices);
-    unsigned int index;
     //make a new empty relation using the new header
     Relation* newRelation = new Relation(ruleName, newHeader);
     for(Tuple t1 : this->tuples) {
@@ -196,7 +195,8 @@ Tuple Relation::joinTuple(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int
 }
 
 bool Relation::isInList(int index, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices) {
-    for (unsigned int i = 0; i < attributeIndices.size(); i++) {
+    int size = attributeIndices.size();
+    for (int i = 0; i < size; i++) {
         if (index == attributeIndices.at(i).second) {
             return true;
         }
