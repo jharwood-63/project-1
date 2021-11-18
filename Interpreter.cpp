@@ -145,7 +145,7 @@ void Interpreter::evaluateRules() {
             }
             //join the relations that result
             result = interResults.at(0);
-            for (unsigned int j = 1; j < size; j++) {
+            for (int j = 1; j < size; j++) {
                 result = result->join(interResults.at(j), ruleName);
             }
             interResults.clear();

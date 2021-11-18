@@ -18,8 +18,8 @@ private:
     std::string name;
     Header* header;
 
-    Header* combineHeader(Header* headB, std::vector<std::pair<int, int> > &attributeIndices);
-    bool isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<int, int> > attributeIndices);
+    Header* combineHeader(Header* headB, std::vector<std::pair<unsigned int, unsigned int> > &attributeIndices);
+    bool isJoinable(Tuple t1, Tuple t2, std::vector<std::pair<unsigned int, unsigned int> > attributeIndices);
     Tuple joinTuple(Tuple t1, Tuple t2, int index2);
     bool needsReorder(std::vector<int> indices);
     void toString(Tuple printTuple);
