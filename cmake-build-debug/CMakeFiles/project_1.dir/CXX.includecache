@@ -6,59 +6,15 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/jharw/CS236/project-1/Database.h
-map
--
-string
--
-vector
--
-Relation.h
-C:/Users/jharw/CS236/project-1/Relation.h
-
-C:/Users/jharw/CS236/project-1/DatalogProgram.h
-vector
--
-set
--
-iostream
--
-Predicate.h
-C:/Users/jharw/CS236/project-1/Predicate.h
-Rule.h
-C:/Users/jharw/CS236/project-1/Rule.h
-
 C:/Users/jharw/CS236/project-1/Header.h
 vector
 -
 string
 -
 
-C:/Users/jharw/CS236/project-1/Interpreter.cpp
-Interpreter.h
-C:/Users/jharw/CS236/project-1/Interpreter.h
-
-C:/Users/jharw/CS236/project-1/Interpreter.h
-DatalogProgram.h
-C:/Users/jharw/CS236/project-1/DatalogProgram.h
-Database.h
-C:/Users/jharw/CS236/project-1/Database.h
-string
--
-vector
--
-
-C:/Users/jharw/CS236/project-1/Parameter.h
-string
--
-
-C:/Users/jharw/CS236/project-1/Predicate.h
-Parameter.h
-C:/Users/jharw/CS236/project-1/Parameter.h
-string
--
-vector
--
+C:/Users/jharw/CS236/project-1/Relation.cpp
+Relation.h
+C:/Users/jharw/CS236/project-1/Relation.h
 
 C:/Users/jharw/CS236/project-1/Relation.h
 Tuple.h
@@ -72,12 +28,6 @@ map
 string
 -
 iostream
--
-
-C:/Users/jharw/CS236/project-1/Rule.h
-Predicate.h
-C:/Users/jharw/CS236/project-1/Predicate.h
-vector
 -
 
 C:/Users/jharw/CS236/project-1/Tuple.h

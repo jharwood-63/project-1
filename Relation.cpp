@@ -120,16 +120,16 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
     //make a new empty relation using the new header
     Relation* newRelation = new Relation(ruleName, newHeader);
     for(Tuple t1 : this->tuples) {
-        index = 0;
         for(Tuple t2 : r2->tuples) {
             if (isJoinable(t1, t2, attributeIndices)) {
-                if (attributeIndices.size() == 0)
+                if (attributeIndices.size() == 0) {
                     newRelation->addTuple(joinTuple(t1, t2, -1));
-                else
-                    newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
-
-                if ((index + 1) != attributeIndices.size()) {
-                    index++;
+                } else {
+                    index = 0;
+                    while (index < attributeIndices.size()) {
+                        newRelation->addTuple(joinTuple(t1, t2, attributeIndices.at(index).second));
+                        index++;
+                    }
                 }
             }
         }
