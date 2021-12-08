@@ -15,18 +15,21 @@ class Graph {
 private:
     std::map<int, std::set<int>> adjacencyListMap;
     std::map<int, std::set<int>> reverseAdjacencyMap;
-    struct Node {
-        int index;
-        bool visited;
-    };
-    std::vector<Node> nodes;
+    std::map<int, bool> visitedMap;
 
     void createNodes(int size);
     void createAdjacencyList(std::vector<Rule*> rules);
     void createReverseAdjacencyList();
+
+    void depthFirstSearch(int rule, std::set<int> &postorder);
+
+    bool markVisited(int rule);
+    bool isVisited(int rule);
+    std::set<int> findAdjacencyList(int rule);
     bool searchSet(std::set<int> adjacencyList, int adjacencyIndex);
 public:
     Graph(std::vector<Rule*> rules);
+    void depthFirstSearchForest();
 };
 
 

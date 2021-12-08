@@ -126,7 +126,7 @@ void Interpreter::evaluateRules() {
      */
     std::vector<Rule*> rules = datalogProgram->rules;
     Graph* graph = new Graph(rules);
-    //graph->createAdjacencyList(datalogProgram->rules);
+    graph->depthFirstSearchForest();
 
     Relation* result;
     int changes;
