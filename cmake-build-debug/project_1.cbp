@@ -145,6 +145,12 @@
 		<Unit filename="C:/Users/jharw/CS236/project-1/FactsAutomaton.h">
 			<Option target="project_1"/>
 		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Graph.cpp">
+			<Option target="project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/jharw/CS236/project-1/Graph.h">
+			<Option target="project_1"/>
+		</Unit>
 		<Unit filename="C:/Users/jharw/CS236/project-1/Header.cpp">
 			<Option target="project_1"/>
 		</Unit>

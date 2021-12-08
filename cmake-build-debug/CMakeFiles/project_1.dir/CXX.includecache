@@ -6,13 +6,37 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/jharw/CS236/project-1/Header.cpp
-Header.h
-C:/Users/jharw/CS236/project-1/Header.h
+C:/Users/jharw/CS236/project-1/Graph.cpp
+Graph.h
+C:/Users/jharw/CS236/project-1/Graph.h
 
-C:/Users/jharw/CS236/project-1/Header.h
+C:/Users/jharw/CS236/project-1/Graph.h
+iostream
+-
+map
+-
+set
+-
 vector
 -
+Rule.h
+C:/Users/jharw/CS236/project-1/Rule.h
+
+C:/Users/jharw/CS236/project-1/Parameter.h
 string
+-
+
+C:/Users/jharw/CS236/project-1/Predicate.h
+Parameter.h
+C:/Users/jharw/CS236/project-1/Parameter.h
+string
+-
+vector
+-
+
+C:/Users/jharw/CS236/project-1/Rule.h
+Predicate.h
+C:/Users/jharw/CS236/project-1/Predicate.h
+vector
 -
 

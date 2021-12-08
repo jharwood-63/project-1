@@ -7,6 +7,7 @@
 
 #include "DatalogProgram.h"
 #include "Database.h"
+#include "Graph.h"
 #include <string>
 #include <vector>
 

@@ -53,6 +53,12 @@ CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../FactsAutomaton.cpp
 CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../FactsAutomaton.h
 CMakeFiles/project_1.dir/FactsAutomaton.cpp.obj: ../Token.h
 
+CMakeFiles/project_1.dir/Graph.cpp.obj: ../Graph.cpp
+CMakeFiles/project_1.dir/Graph.cpp.obj: ../Graph.h
+CMakeFiles/project_1.dir/Graph.cpp.obj: ../Parameter.h
+CMakeFiles/project_1.dir/Graph.cpp.obj: ../Predicate.h
+CMakeFiles/project_1.dir/Graph.cpp.obj: ../Rule.h
+
 CMakeFiles/project_1.dir/Header.cpp.obj: ../Header.cpp
 CMakeFiles/project_1.dir/Header.cpp.obj: ../Header.h
 
@@ -63,6 +69,7 @@ CMakeFiles/project_1.dir/IdAutomaton.cpp.obj: ../Token.h
 
 CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Database.h
 CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../DatalogProgram.h
+CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Graph.h
 CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Header.h
 CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Interpreter.cpp
 CMakeFiles/project_1.dir/Interpreter.cpp.obj: ../Interpreter.h
@@ -180,6 +187,7 @@ CMakeFiles/project_1.dir/UndefinedAutomaton.cpp.obj: ../UndefinedAutomaton.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Automaton.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Database.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../DatalogProgram.h
+CMakeFiles/project_1.dir/main.cpp.obj: ../Graph.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Header.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Interpreter.h
 CMakeFiles/project_1.dir/main.cpp.obj: ../Lexer.h

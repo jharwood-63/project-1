@@ -124,10 +124,14 @@ void Interpreter::evaluateRules() {
      * Rename the relation to make it union-compatible
      * Union with the relation in the database
      */
+    std::vector<Rule*> rules = datalogProgram->rules;
+    Graph* graph = new Graph(rules);
+    //graph->createAdjacencyList(datalogProgram->rules);
+
     Relation* result;
     int changes;
     int iterations = 0;
-    std::vector<Rule*> rules = datalogProgram->rules;
+
     std::vector<Predicate*> schemes = datalogProgram->schemes;
     std::vector<Relation*> interResults;
     std::cout << "Rule Evaluation" << std::endl;
