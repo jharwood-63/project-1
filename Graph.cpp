@@ -77,8 +77,6 @@ bool Graph::searchSet(std::set<int> adjacencyList, int adjacencyIndex) {
 }
 
 void Graph::depthFirstSearchForest() {
-    // this one returns the tree?
-    // this function is necessary for the nodes that you can't get anywhere from
     /*
      * forest := empty
      * for each vertex v in G
@@ -89,19 +87,23 @@ void Graph::depthFirstSearchForest() {
      * tree := DepthFirstSearch(v)
      * add tree to forest
      */
+    std::set<std::vector<int>> forest;
+    forest.clear();
+    resetVisited();
 
-    //this is the second part without the forest stuff
-    std::set<int> postorder;
+    std::vector<int> postorder;
+    std::vector<int> tree;
     std::map<int, std::set<int>>::iterator itr;
     for (itr = reverseAdjacencyMap.begin(); itr != reverseAdjacencyMap.end(); itr++) {
+        tree.clear();
         if (!isVisited(itr->first)) {
-            depthFirstSearch(itr->first, postorder);
+            depthFirstSearch(itr->first, postorder, tree);
+            forest.insert(tree);
         }
     }
 }
 
-void Graph::depthFirstSearch(int rule, std::set<int> &postorder) {
-    // this one returns the postorder
+void Graph::depthFirstSearch(int rule, std::vector<int> &postorder, std::vector<int> &tree) {
     /*
      * mark v
      * for each vertex w adjacent from v
@@ -109,39 +111,24 @@ void Graph::depthFirstSearch(int rule, std::set<int> &postorder) {
      * DepthFirstSearch(w)
      * still need to add postorder
      */
-
-    //so its not working super great, its adding in the wrong order because of the set and also its adding the wrong thing
-    int done = 0;
-    bool marked = markVisited(rule);
-    //FIXME:
-    if (!marked) {
-        std::cout << "what seems to be the officer problem?\n";
-    }
-
+    markVisited(rule);
+    tree.push_back(rule);
     std::set<int> adjacencyList = findAdjacencyList(rule);
     for (int dependent : adjacencyList) {
         if (!isVisited(dependent))
-            depthFirstSearch(dependent, postorder);
-
-        done++;
-        if (done == adjacencyList.size()) {
-            if (adjacencyList.size() == 1)
-                postorder.insert(rule);
-            else
-                postorder.insert(dependent);
-        }
+            depthFirstSearch(dependent, postorder, tree);
     }
+    postorder.push_back(rule);
 }
 
-bool Graph::markVisited(int rule) {
+void Graph::markVisited(int rule) {
     std::map<int, bool>::iterator itr;
     for (itr = visitedMap.begin(); itr != visitedMap.end(); itr++) {
         if (itr->first == rule) {
             itr->second = true;
-            return true;
+            break;
         }
     }
-    return false;
 }
 
 bool Graph::isVisited(int rule) {
@@ -157,6 +144,13 @@ bool Graph::isVisited(int rule) {
         }
     }
     return false;
+}
+
+void Graph::resetVisited() {
+    std::map<int, bool>::iterator itr;
+    for (itr = visitedMap.begin(); itr != visitedMap.end(); itr++) {
+        itr->second = false;
+    }
 }
 
 std::set<int> Graph::findAdjacencyList(int rule) {

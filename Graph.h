@@ -21,10 +21,11 @@ private:
     void createAdjacencyList(std::vector<Rule*> rules);
     void createReverseAdjacencyList();
 
-    void depthFirstSearch(int rule, std::set<int> &postorder);
+    void depthFirstSearch(int rule, std::vector<int> &postorder, std::vector<int> &tree);
 
-    bool markVisited(int rule);
+    void markVisited(int rule);
     bool isVisited(int rule);
+    void resetVisited();
     std::set<int> findAdjacencyList(int rule);
     bool searchSet(std::set<int> adjacencyList, int adjacencyIndex);
 public:
