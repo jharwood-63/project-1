@@ -128,6 +128,7 @@ void Interpreter::evaluateRules() {
     Graph* graph = new Graph(rules);
     graph->toString();
     graph->depthFirstSearchForest();
+    graph->depthFirstSearchForestSCC();
 /*
     Relation* result;
     int changes;

@@ -17,24 +17,27 @@ private:
     std::map<int, std::set<int>> reverseAdjacencyMap;
     std::map<int, bool> visitedMap;
     std::vector<int> postorder;
-    std::set<std::vector<int>> forest;
+    std::vector<std::vector<int>> forest;
 
     void createNodes(int size);
     void createAdjacencyList(std::vector<Rule*> rules);
     void createReverseAdjacencyList();
 
     void depthFirstSearch(int rule, std::vector<int> &tree);
+    void depthFirstSearchSCC(int rule, std::vector<int> &SCC);
 
     void markVisited(int rule);
     bool isVisited(int rule);
     void resetVisited();
+    std::set<int> findRevAdjacencyList(int rule);
     std::set<int> findAdjacencyList(int rule);
     bool searchSet(std::set<int> adjacencyList, int adjacencyIndex);
 public:
     Graph(std::vector<Rule*> rules);
     void depthFirstSearchForest();
+    void depthFirstSearchForestSCC();
     std::vector<int> getPostorder();
-    std::set<std::vector<int>> getForest();
+    std::vector<std::vector<int>> getForest();
     void toString();
 };
 

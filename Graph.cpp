@@ -86,14 +86,13 @@ void Graph::depthFirstSearchForest() {
     forest.clear();
     resetVisited();
 
-    std::vector<int> postorder;
     std::vector<int> tree;
     std::map<int, std::set<int>>::iterator itr;
     for (itr = reverseAdjacencyMap.begin(); itr != reverseAdjacencyMap.end(); itr++) {
         tree.clear();
         if (!isVisited(itr->first)) {
             depthFirstSearch(itr->first, tree);
-            forest.insert(tree);
+            forest.push_back(tree);
         }
     }
 }
@@ -108,12 +107,37 @@ void Graph::depthFirstSearch(int rule, std::vector<int> &tree) {
      */
     markVisited(rule);
     tree.push_back(rule);
-    std::set<int> adjacencyList = findAdjacencyList(rule);
+    std::set<int> adjacencyList = findRevAdjacencyList(rule);
     for (int dependent : adjacencyList) {
         if (!isVisited(dependent))
             depthFirstSearch(dependent, tree);
     }
     postorder.push_back(rule);
+}
+
+void Graph::depthFirstSearchForestSCC() {
+    forest.clear();
+    resetVisited();
+
+    std::vector<int> SCC;
+    int startSize = postorder.size() - 1;
+    for (int i = startSize; i >= 0; i--) {
+        SCC.clear();
+        if (!isVisited(postorder.at(i))) {
+            depthFirstSearchSCC(postorder.at(i), SCC);
+            forest.push_back(SCC);
+        }
+    }
+}
+
+void Graph::depthFirstSearchSCC(int rule, std::vector<int> &SCC) {
+    markVisited(rule);
+    SCC.push_back(rule);
+    std::set<int> adjacencyList = findAdjacencyList(rule);
+    for (int dependent : adjacencyList) {
+        if (!isVisited(dependent))
+            depthFirstSearchSCC(dependent, SCC);
+    }
 }
 
 void Graph::markVisited(int rule) {
@@ -148,9 +172,18 @@ void Graph::resetVisited() {
     }
 }
 
-std::set<int> Graph::findAdjacencyList(int rule) {
+std::set<int> Graph::findRevAdjacencyList(int rule) {
     std::map<int, std::set<int>>::iterator itr;
     for (itr = reverseAdjacencyMap.begin(); itr != reverseAdjacencyMap.end(); itr++) {
+        if (itr->first == rule) {
+            return itr->second;
+        }
+    }
+}
+
+std::set<int> Graph::findAdjacencyList(int rule) {
+    std::map<int, std::set<int>>::iterator itr;
+    for (itr = adjacencyListMap.begin(); itr != adjacencyListMap.end(); itr++) {
         if (itr->first == rule) {
             return itr->second;
         }
@@ -161,7 +194,7 @@ std::vector<int> Graph::getPostorder() {
     return postorder;
 }
 
-std::set<std::vector<int>> Graph::getForest() {
+std::vector<std::vector<int>> Graph::getForest() {
     return forest;
 }
 
