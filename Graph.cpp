@@ -7,6 +7,7 @@
 Graph::Graph(std::vector<Rule*> rules) {
     createNodes(rules.size());
     createAdjacencyList(rules);
+    createReverseAdjacencyList();
 }
 
 void Graph::createNodes(int size) {
@@ -44,4 +45,36 @@ void Graph::createAdjacencyList(std::vector<Rule *> rules) {
         }
         adjacencyListMap.insert({i, adjacencyList});
     }
+}
+
+void Graph::createReverseAdjacencyList() {
+    //go through the adjacency list
+    //for each RULE in the map, look for rules that are dependent on the RULE
+    //add those rules to the reverse adjacency list
+    std::map<int, std::set<int>>::iterator itr1;
+    std::map<int, std::set<int>>::iterator itr2;
+    std::set<int> reverseAdjacency;
+    int index = 0;
+    for (itr1 = adjacencyListMap.begin(); itr1 != adjacencyListMap.end(); itr1++) {
+        reverseAdjacency.clear();
+        // we want to look for itr1->first in all the other sets
+        for (itr2 = adjacencyListMap.begin(); itr2 != adjacencyListMap.end(); itr2++) {
+            if (searchSet(itr2->second, itr1->first)) {
+                reverseAdjacency.insert(itr2->first);
+            }
+        }
+        //after everything
+        reverseAdjacencyMap.insert({index, reverseAdjacency});
+        index++;
+    }
+
+}
+
+bool Graph::searchSet(std::set<int> adjacencyList, int adjacencyIndex) {
+    for(int dependent : adjacencyList) {
+        if (dependent == adjacencyIndex) {
+            return true;
+        }
+    }
+    return false;
 }

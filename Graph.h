@@ -23,7 +23,8 @@ private:
 
     void createNodes(int size);
     void createAdjacencyList(std::vector<Rule*> rules);
-    void createReverseAdjacencyList(std::vector<Rule*> rules);
+    void createReverseAdjacencyList();
+    bool searchSet(std::set<int> adjacencyList, int adjacencyIndex);
 public:
     Graph(std::vector<Rule*> rules);
 };
