@@ -126,8 +126,9 @@ void Interpreter::evaluateRules() {
      */
     std::vector<Rule*> rules = datalogProgram->rules;
     Graph* graph = new Graph(rules);
+    graph->toString();
     graph->depthFirstSearchForest();
-
+/*
     Relation* result;
     int changes;
     int iterations = 0;
@@ -180,6 +181,7 @@ void Interpreter::evaluateRules() {
     } while (changes != 0);
 
     std::cout << "\nSchemes populated after " << iterations << " passes through the Rules.\n\n";
+    */
 }
 
 Relation* Interpreter::findRelation(Predicate* p) {

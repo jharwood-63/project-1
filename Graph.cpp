@@ -24,10 +24,6 @@ void Graph::createAdjacencyList(std::vector<Rule *> rules) {
     //first runs through rules
     for (unsigned int i = 0; i < rules.size(); i++) {
         //second runs through body predicates
-
-        //FIXME: for testing purposes
-        std::string rule = rules.at(i)->getHeadPredicate()->getId();
-
         adjacencyList.clear();
         for (int j = 0; j < rules.at(i)->getBodyPredicateSize(); j++) {
             //third runs through head predicates to see if there is a match
@@ -87,7 +83,6 @@ void Graph::depthFirstSearchForest() {
      * tree := DepthFirstSearch(v)
      * add tree to forest
      */
-    std::set<std::vector<int>> forest;
     forest.clear();
     resetVisited();
 
@@ -97,13 +92,13 @@ void Graph::depthFirstSearchForest() {
     for (itr = reverseAdjacencyMap.begin(); itr != reverseAdjacencyMap.end(); itr++) {
         tree.clear();
         if (!isVisited(itr->first)) {
-            depthFirstSearch(itr->first, postorder, tree);
+            depthFirstSearch(itr->first, tree);
             forest.insert(tree);
         }
     }
 }
 
-void Graph::depthFirstSearch(int rule, std::vector<int> &postorder, std::vector<int> &tree) {
+void Graph::depthFirstSearch(int rule, std::vector<int> &tree) {
     /*
      * mark v
      * for each vertex w adjacent from v
@@ -116,7 +111,7 @@ void Graph::depthFirstSearch(int rule, std::vector<int> &postorder, std::vector<
     std::set<int> adjacencyList = findAdjacencyList(rule);
     for (int dependent : adjacencyList) {
         if (!isVisited(dependent))
-            depthFirstSearch(dependent, postorder, tree);
+            depthFirstSearch(dependent, tree);
     }
     postorder.push_back(rule);
 }
@@ -159,5 +154,33 @@ std::set<int> Graph::findAdjacencyList(int rule) {
         if (itr->first == rule) {
             return itr->second;
         }
+    }
+}
+
+std::vector<int> Graph::getPostorder() {
+    return postorder;
+}
+
+std::set<std::vector<int>> Graph::getForest() {
+    return forest;
+}
+
+void Graph::toString() {
+    std::map<int, std::set<int>>::iterator itr;
+    int count;
+    std::cout << "Dependency Graph\n";
+    for (itr = adjacencyListMap.begin(); itr != adjacencyListMap.end(); itr++) {
+        std::cout << "R" << itr->first << ":";
+        count = 0;
+        for (int adjacent : itr->second) {
+            if (count == itr->second.size() - 1) {
+                std::cout << "R" << adjacent;
+            }
+            else {
+                std::cout << "R" << adjacent << ",";
+            }
+            count++;
+        }
+        std::cout << "\n";
     }
 }
