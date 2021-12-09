@@ -83,7 +83,8 @@ void Graph::depthFirstSearchForest() {
      * tree := DepthFirstSearch(v)
      * add tree to forest
      */
-    forest.clear();
+    if (!forest.empty())
+        forest.clear();
     resetVisited();
 
     std::set<int> tree;
@@ -116,7 +117,8 @@ void Graph::depthFirstSearch(int rule, std::set<int> &tree) {
 }
 
 void Graph::depthFirstSearchForestSCC() {
-    forest.clear();
+    if (!forest.empty())
+        forest.clear();
     resetVisited();
 
     std::set<int> SCC;
