@@ -131,9 +131,15 @@ Relation* Relation::join(Relation* r2, std::string ruleName) {
 
 void Relation::unite(Relation* ruleResult, int &changes) {
     //this->relation is database relation, ruleResult is the result of the rule
+    bool isEmpty = tuples.empty();
     std::set<Tuple> ruleTuples = ruleResult->getTuples();
     for (Tuple t : ruleTuples) {
-        this->addTuple(t, changes);
+        if (isEmpty) {
+            this->addTuple(t);
+            toString(t);
+        }
+        else
+            this->addTuple(t, changes);
     }
 }
 

@@ -129,60 +129,85 @@ void Interpreter::evaluateRules() {
     graph->toString();
     graph->depthFirstSearchForest();
     graph->depthFirstSearchForestSCC();
-/*
-    Relation* result;
-    int changes;
-    int iterations = 0;
+    std::vector<std::set<int>> SCCForest = graph->getForest();
 
-    std::vector<Predicate*> schemes = datalogProgram->schemes;
-    std::vector<Relation*> interResults;
+    std::set<int> currSCC;
+    int currSCCName;
+    bool printed;
+
     std::cout << "Rule Evaluation" << std::endl;
-    do {
-        changes = 0;
-        for (unsigned int i = 0; i < rules.size(); i++) {
-            toString(rules.at(i));
-            //changes = 0;
-            int size = rules.at(i)->getBodyPredicateSize();
-            std::string ruleName = rules.at(i)->getHeadPredicate()->getId();
-            //evaluate predicates on the right side of the rule
-            for (int j = 0; j < size; j++) {
-                Relation *newRelation = evaluatePredicate(rules.at(i)->getBodyPredicate(j));
-                interResults.push_back(newRelation);
-            }
-            //join the relations that result
-            result = interResults.at(0);
-            for (int j = 1; j < size; j++) {
-                result = result->join(interResults.at(j), ruleName);
-            }
-            interResults.clear();
-            //project using the head predicate parameters
-            std::vector<int> indexList = createIndexList(result, rules.at(i)->getHeadPredicate());
-            result = result->project(indexList);
-            //rename to the orignal parameter names from the scheme
-            Predicate *scheme;
-            for (unsigned int i = 0; i < schemes.size(); i++) {
-                if (schemes.at(i)->getId() == ruleName) {
-                    scheme = schemes.at(i);
-                    break;
-                }
-            }
-            result = result->rename(scheme->getParameters());
-            //union the result with the fact in the database
-            std::map<std::string, Relation *>::iterator it;
-            Relation *dataRelation;
-            for (it = database->dataMap.begin(); it != database->dataMap.end(); it++) {
-                if (it->first == ruleName) {
-                    dataRelation = it->second;
-                    break;
-                }
-            }
-            dataRelation->unite(result, changes);
-        }
-        iterations++;
-    } while (changes != 0);
+    /*
+     * If an SCC contains only one rule and that rule does not depend on itself, the rule is only evaluated once.
+     * If an SCC contains more than one rule, or a single rule that depends on itself, repeat the evaluation of the rules in the SCC
+     *  until the evaluation reaches a fixed point.
+     * When an SCC contains more than one rule, evaluate the rules in the SCC in the numeric order of the rule identifiers.
+     */
 
-    std::cout << "\nSchemes populated after " << iterations << " passes through the Rules.\n\n";
-    */
+
+
+
+
+
+    for (unsigned int i = 0; i < SCCForest.size(); i++) {
+        currSCC = SCCForest.at(i);
+        currSCCName = *currSCC.begin();
+        Relation *result;
+        int changes;
+        int passes = 0;
+
+        std::vector<Predicate *> schemes = datalogProgram->schemes;
+        std::vector<Relation *> interResults;
+        printed = false;
+        do {
+            changes = 0;
+            for (int dependent : currSCC) {
+                if (!printed) {
+                    std::cout << "SCC: R" << dependent << "\n";
+                    printed = true;
+                }
+                toString(rules.at(dependent), dependent);
+                int size = rules.at(dependent)->getBodyPredicateSize();
+                std::string ruleName = rules.at(dependent)->getHeadPredicate()->getId();
+                //evaluate predicates on the right side of the rule
+                for (int j = 0; j < size; j++) {
+                    Relation *newRelation = evaluatePredicate(rules.at(dependent)->getBodyPredicate(j));
+                    interResults.push_back(newRelation);
+                }
+                //join the relations that result
+                result = interResults.at(0);
+                for (int j = 1; j < size; j++) {
+                    result = result->join(interResults.at(j), ruleName);
+                }
+                interResults.clear();
+                //project using the head predicate parameters
+                std::vector<int> indexList = createIndexList(result, rules.at(dependent)->getHeadPredicate());
+                result = result->project(indexList);
+                //rename to the original parameter names from the scheme
+                Predicate *scheme;
+                for (unsigned int j = 0; j < schemes.size(); j++) {
+                    if (schemes.at(j)->getId() == ruleName) {
+                        scheme = schemes.at(j);
+                        break;
+                    }
+                }
+                result = result->rename(scheme->getParameters());
+                //union the result with the fact in the database
+                std::map<std::string, Relation *>::iterator it;
+                Relation *dataRelation;
+                for (it = database->dataMap.begin(); it != database->dataMap.end(); it++) {
+                    if (it->first == ruleName) {
+                        dataRelation = it->second;
+                        break;
+                    }
+                }
+                dataRelation->unite(result, changes);
+            }
+            passes++;
+        } while (changes != 0);
+
+        std::cout << passes << " passes: R" << currSCCName << "\n";
+    }
+    std::cout << "\n";
 }
 
 Relation* Interpreter::findRelation(Predicate* p) {
@@ -276,7 +301,7 @@ void Interpreter::toString(Predicate *query, Relation *relation) {
 
 }
 
-void Interpreter::toString(Rule* rule) {
+void Interpreter::toString(Rule* rule, int ruleIndex) {
     Predicate* headPredicate = rule->getHeadPredicate();
     int headParamSize = headPredicate->getSize();
     std::cout << headPredicate->getId() << "(";

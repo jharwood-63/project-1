@@ -86,7 +86,7 @@ void Graph::depthFirstSearchForest() {
     forest.clear();
     resetVisited();
 
-    std::vector<int> tree;
+    std::set<int> tree;
     std::map<int, std::set<int>>::iterator itr;
     for (itr = reverseAdjacencyMap.begin(); itr != reverseAdjacencyMap.end(); itr++) {
         tree.clear();
@@ -97,7 +97,7 @@ void Graph::depthFirstSearchForest() {
     }
 }
 
-void Graph::depthFirstSearch(int rule, std::vector<int> &tree) {
+void Graph::depthFirstSearch(int rule, std::set<int> &tree) {
     /*
      * mark v
      * for each vertex w adjacent from v
@@ -106,7 +106,7 @@ void Graph::depthFirstSearch(int rule, std::vector<int> &tree) {
      * still need to add postorder
      */
     markVisited(rule);
-    tree.push_back(rule);
+    tree.insert(rule);
     std::set<int> adjacencyList = findRevAdjacencyList(rule);
     for (int dependent : adjacencyList) {
         if (!isVisited(dependent))
@@ -119,7 +119,7 @@ void Graph::depthFirstSearchForestSCC() {
     forest.clear();
     resetVisited();
 
-    std::vector<int> SCC;
+    std::set<int> SCC;
     int startSize = postorder.size() - 1;
     for (int i = startSize; i >= 0; i--) {
         SCC.clear();
@@ -130,9 +130,9 @@ void Graph::depthFirstSearchForestSCC() {
     }
 }
 
-void Graph::depthFirstSearchSCC(int rule, std::vector<int> &SCC) {
+void Graph::depthFirstSearchSCC(int rule, std::set<int> &SCC) {
     markVisited(rule);
-    SCC.push_back(rule);
+    SCC.insert(rule);
     std::set<int> adjacencyList = findAdjacencyList(rule);
     for (int dependent : adjacencyList) {
         if (!isVisited(dependent))
@@ -194,7 +194,7 @@ std::vector<int> Graph::getPostorder() {
     return postorder;
 }
 
-std::vector<std::vector<int>> Graph::getForest() {
+std::vector<std::set<int>> Graph::getForest() {
     return forest;
 }
 
@@ -216,4 +216,5 @@ void Graph::toString() {
         }
         std::cout << "\n";
     }
+    std::cout << "\n";
 }

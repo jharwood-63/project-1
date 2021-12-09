@@ -30,7 +30,7 @@ private:
     bool checkAllConst(Predicate* query);
 
     void toString(Predicate* query, Relation* relation);
-    void toString(Rule* rule);
+    void toString(Rule* rule, int ruleIndex);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 

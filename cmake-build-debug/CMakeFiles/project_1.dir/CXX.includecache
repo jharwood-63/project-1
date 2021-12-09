@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/jharw/CS236/project-1/Automaton.h
-Token.h
-C:/Users/jharw/CS236/project-1/Token.h
-
 C:/Users/jharw/CS236/project-1/Database.h
 map
 -
@@ -31,10 +27,6 @@ Predicate.h
 C:/Users/jharw/CS236/project-1/Predicate.h
 Rule.h
 C:/Users/jharw/CS236/project-1/Rule.h
-
-C:/Users/jharw/CS236/project-1/Graph.cpp
-Graph.h
-C:/Users/jharw/CS236/project-1/Graph.h
 
 C:/Users/jharw/CS236/project-1/Graph.h
 iostream
@@ -70,30 +62,8 @@ string
 vector
 -
 
-C:/Users/jharw/CS236/project-1/Lexer.h
-vector
--
-Automaton.h
-C:/Users/jharw/CS236/project-1/Automaton.h
-Token.h
-C:/Users/jharw/CS236/project-1/Token.h
-
 C:/Users/jharw/CS236/project-1/Parameter.h
 string
--
-
-C:/Users/jharw/CS236/project-1/Parser.h
-Token.h
-C:/Users/jharw/CS236/project-1/Token.h
-DatalogProgram.h
-C:/Users/jharw/CS236/project-1/DatalogProgram.h
-Predicate.h
-C:/Users/jharw/CS236/project-1/Predicate.h
-Parameter.h
-C:/Users/jharw/CS236/project-1/Parameter.h
-Rule.h
-C:/Users/jharw/CS236/project-1/Rule.h
-vector
 -
 
 C:/Users/jharw/CS236/project-1/Predicate.h
@@ -124,33 +94,9 @@ C:/Users/jharw/CS236/project-1/Predicate.h
 vector
 -
 
-C:/Users/jharw/CS236/project-1/Token.h
-string
--
-
 C:/Users/jharw/CS236/project-1/Tuple.h
 vector
 -
 string
--
-
-C:/Users/jharw/CS236/project-1/main.cpp
-Lexer.h
-C:/Users/jharw/CS236/project-1/Lexer.h
-Parser.h
-C:/Users/jharw/CS236/project-1/Parser.h
-DatalogProgram.h
-C:/Users/jharw/CS236/project-1/DatalogProgram.h
-Database.h
-C:/Users/jharw/CS236/project-1/Database.h
-Interpreter.h
-C:/Users/jharw/CS236/project-1/Interpreter.h
-iostream
--
-fstream
--
-string
--
-vector
 -
 
