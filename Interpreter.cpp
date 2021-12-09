@@ -357,7 +357,7 @@ void Interpreter::toString(Rule* rule) {
 
 std::string Interpreter::sccToString(std::set<int> SCC) {
     std::stringstream sccString;
-    int size = 0;
+    long unsigned int size = 0;
     for (int node : SCC) {
         if (size == SCC.size() - 1) {
             sccString << "R" << node;

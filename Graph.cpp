@@ -204,7 +204,7 @@ std::vector<std::set<int>> Graph::getForest() {
 
 void Graph::toString() {
     std::map<int, std::set<int>>::iterator itr;
-    int count;
+    long unsigned int count;
     std::cout << "Dependency Graph\n";
     for (itr = adjacencyListMap.begin(); itr != adjacencyListMap.end(); itr++) {
         std::cout << "R" << itr->first << ":";
