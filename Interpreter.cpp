@@ -133,7 +133,6 @@ void Interpreter::evaluateRules() {
 
     std::set<int> currSCC;
     int currSCCName;
-    bool printed;
 
     std::cout << "Rule Evaluation" << std::endl;
     /*
@@ -143,71 +142,80 @@ void Interpreter::evaluateRules() {
      * When an SCC contains more than one rule, evaluate the rules in the SCC in the numeric order of the rule identifiers.
      */
 
-
-
-
-
-
     for (unsigned int i = 0; i < SCCForest.size(); i++) {
         currSCC = SCCForest.at(i);
         currSCCName = *currSCC.begin();
-        Relation *result;
-        int changes;
+
         int passes = 0;
-
-        std::vector<Predicate *> schemes = datalogProgram->schemes;
-        std::vector<Relation *> interResults;
-        printed = false;
-        do {
-            changes = 0;
-            for (int dependent : currSCC) {
-                if (!printed) {
-                    std::cout << "SCC: R" << dependent << "\n";
-                    printed = true;
-                }
-                toString(rules.at(dependent), dependent);
-                int size = rules.at(dependent)->getBodyPredicateSize();
-                std::string ruleName = rules.at(dependent)->getHeadPredicate()->getId();
-                //evaluate predicates on the right side of the rule
-                for (int j = 0; j < size; j++) {
-                    Relation *newRelation = evaluatePredicate(rules.at(dependent)->getBodyPredicate(j));
-                    interResults.push_back(newRelation);
-                }
-                //join the relations that result
-                result = interResults.at(0);
-                for (int j = 1; j < size; j++) {
-                    result = result->join(interResults.at(j), ruleName);
-                }
-                interResults.clear();
-                //project using the head predicate parameters
-                std::vector<int> indexList = createIndexList(result, rules.at(dependent)->getHeadPredicate());
-                result = result->project(indexList);
-                //rename to the original parameter names from the scheme
-                Predicate *scheme;
-                for (unsigned int j = 0; j < schemes.size(); j++) {
-                    if (schemes.at(j)->getId() == ruleName) {
-                        scheme = schemes.at(j);
-                        break;
-                    }
-                }
-                result = result->rename(scheme->getParameters());
-                //union the result with the fact in the database
-                std::map<std::string, Relation *>::iterator it;
-                Relation *dataRelation;
-                for (it = database->dataMap.begin(); it != database->dataMap.end(); it++) {
-                    if (it->first == ruleName) {
-                        dataRelation = it->second;
-                        break;
-                    }
-                }
-                dataRelation->unite(result, changes);
+        int changes;
+        std::cout << "SCC: R" << currSCCName << "\n";
+        if (currSCC.size() == 1) {
+            bool selfDependent = isSelfDependent(currSCCName);
+            if (!selfDependent) {
+                evaluateRule(currSCC);
+                passes = 1;
             }
-            passes++;
-        } while (changes != 0);
-
+            else {
+                do {
+                    changes = 0;
+                    changes += evaluateRule(currSCC);
+                    passes++;
+                } while (changes != 0);
+            }
+        }
         std::cout << passes << " passes: R" << currSCCName << "\n";
     }
     std::cout << "\n";
+}
+
+int Interpreter::evaluateRule(std::set<int> currSCC) {
+    Relation *result;
+    int changes = 0;
+
+    std::vector<Rule*> rules = datalogProgram->rules;
+    std::vector<Predicate *> schemes = datalogProgram->schemes;
+    std::vector<Relation *> interResults;
+    bool printed = false;
+
+    for (int node : currSCC) {
+        toString(rules.at(node), node);
+        int size = rules.at(node)->getBodyPredicateSize();
+        std::string ruleName = rules.at(node)->getHeadPredicate()->getId();
+        //evaluate predicates on the right side of the rule
+        for (int j = 0; j < size; j++) {
+            Relation *newRelation = evaluatePredicate(rules.at(node)->getBodyPredicate(j));
+            interResults.push_back(newRelation);
+        }
+        //join the relations that result
+        result = interResults.at(0);
+        for (int j = 1; j < size; j++) {
+            result = result->join(interResults.at(j), ruleName);
+        }
+        interResults.clear();
+        //project using the head predicate parameters
+        std::vector<int> indexList = createIndexList(result, rules.at(node)->getHeadPredicate());
+        result = result->project(indexList);
+        //rename to the original parameter names from the scheme
+        Predicate *scheme;
+        for (unsigned int j = 0; j < schemes.size(); j++) {
+            if (schemes.at(j)->getId() == ruleName) {
+                scheme = schemes.at(j);
+                break;
+            }
+        }
+        result = result->rename(scheme->getParameters());
+        //union the result with the fact in the database
+        std::map<std::string, Relation *>::iterator it;
+        Relation *dataRelation;
+        for (it = database->dataMap.begin(); it != database->dataMap.end(); it++) {
+            if (it->first == ruleName) {
+                dataRelation = it->second;
+                break;
+            }
+        }
+        dataRelation->unite(result, changes);
+    }
+    return changes;
 }
 
 Relation* Interpreter::findRelation(Predicate* p) {
@@ -281,6 +289,16 @@ bool Interpreter::checkAllConst(Predicate* query) {
     }
 
     if(count == query->getSize())
+        return true;
+    else
+        return false;
+}
+
+bool Interpreter::isSelfDependent(int indexOfRule) {
+    //only works for SCC with one rule
+    std::string headPredicate = datalogProgram->rules.at(indexOfRule)->getHeadPredicate()->getId();
+    std::string bodyPredicate = datalogProgram->rules.at(indexOfRule)->getBodyPredicate(0)->getId();
+    if (headPredicate == bodyPredicate)
         return true;
     else
         return false;

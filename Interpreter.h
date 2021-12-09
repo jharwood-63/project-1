@@ -19,6 +19,7 @@ private:
     void createRelations();
     void createTuples();
     Relation* evaluatePredicate(Predicate* predicate);
+    int evaluateRule(std::set<int> currSCC);
     //std::vector<Relation*> evaluateRightPredicates(Predicate* bodyPredicate);
 
     Relation* findRelation(Predicate* p);
@@ -28,6 +29,7 @@ private:
     int searchMap(std::map<int, std::string> saveVars, std::string var, int index);
     bool checkVector(std::vector<std::string> saveVars, std::string var);
     bool checkAllConst(Predicate* query);
+    bool isSelfDependent(int indexOfRule);
 
     void toString(Predicate* query, Relation* relation);
     void toString(Rule* rule, int ruleIndex);
