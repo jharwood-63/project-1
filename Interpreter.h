@@ -10,6 +10,7 @@
 #include "Graph.h"
 #include <string>
 #include <vector>
+#include <sstream>
 
 class Interpreter {
 private:
@@ -20,7 +21,6 @@ private:
     void createTuples();
     Relation* evaluatePredicate(Predicate* predicate);
     int evaluateRule(std::set<int> currSCC);
-    //std::vector<Relation*> evaluateRightPredicates(Predicate* bodyPredicate);
 
     Relation* findRelation(Predicate* p);
     bool setConstant(std::string parameterId);
@@ -33,6 +33,7 @@ private:
 
     void toString(Predicate* query, Relation* relation);
     void toString(Rule* rule, int ruleIndex);
+    std::string sccToString(std::set<int> SCC);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);
 

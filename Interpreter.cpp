@@ -132,25 +132,19 @@ void Interpreter::evaluateRules() {
     std::vector<std::set<int>> SCCForest = graph->getForest();
 
     std::set<int> currSCC;
-    int currSCCName;
+    std::string currSCCName;
 
     std::cout << "Rule Evaluation" << std::endl;
-    /*
-     * If an SCC contains only one rule and that rule does not depend on itself, the rule is only evaluated once.
-     * If an SCC contains more than one rule, or a single rule that depends on itself, repeat the evaluation of the rules in the SCC
-     *  until the evaluation reaches a fixed point.
-     * When an SCC contains more than one rule, evaluate the rules in the SCC in the numeric order of the rule identifiers.
-     */
 
     for (unsigned int i = 0; i < SCCForest.size(); i++) {
         currSCC = SCCForest.at(i);
-        currSCCName = *currSCC.begin();
+        currSCCName = sccToString(currSCC);
 
         int passes = 0;
         int changes;
-        std::cout << "SCC: R" << currSCCName << "\n";
+        std::cout << "SCC: " << currSCCName << "\n";
         if (currSCC.size() == 1) {
-            bool selfDependent = isSelfDependent(currSCCName);
+            bool selfDependent = isSelfDependent(*currSCC.begin());
             if (!selfDependent) {
                 evaluateRule(currSCC);
                 passes = 1;
@@ -163,7 +157,7 @@ void Interpreter::evaluateRules() {
                 } while (changes != 0);
             }
         }
-        std::cout << passes << " passes: R" << currSCCName << "\n";
+        std::cout << passes << " passes: " << currSCCName << "\n";
     }
     std::cout << "\n";
 }
@@ -351,6 +345,22 @@ void Interpreter::toString(Rule* rule, int ruleIndex) {
         }
 
     }
+}
+
+std::string Interpreter::sccToString(std::set<int> SCC) {
+    std::stringstream sccString;
+    int size = 0;
+    for (int node : SCC) {
+        if (size == SCC.size() - 1) {
+            sccString << "R" << node;
+        }
+        else {
+            sccString << "R" << node << ",";
+        }
+        size++;
+    }
+
+    return sccString.str();
 }
 
 
