@@ -122,8 +122,8 @@ void Graph::depthFirstSearchForestSCC() {
     resetVisited();
 
     std::set<int> SCC;
-    unsigned int startSize = postorder.size() - 1;
-    for (unsigned int i = startSize; i >= 0; i--) {
+    int startSize = (signed)postorder.size() - 1;
+    for (int i = startSize; i >= 0; i--) {
         SCC.clear();
         if (!isVisited(postorder.at(i))) {
             depthFirstSearchSCC(postorder.at(i), SCC);

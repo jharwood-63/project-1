@@ -142,9 +142,11 @@ void Interpreter::evaluateRules() {
 
         int passes = 0;
         int changes;
+        int indexOfRule;
         std::cout << "SCC: " << currSCCName << "\n";
         if (currSCC.size() == 1) {
-            bool selfDependent = isSelfDependent(*currSCC.begin());
+            indexOfRule = *currSCC.begin();
+            bool selfDependent = isSelfDependent(indexOfRule);
             if (!selfDependent) {
                 evaluateRule(currSCC);
                 passes = 1;
