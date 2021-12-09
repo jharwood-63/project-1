@@ -120,8 +120,8 @@ void Graph::depthFirstSearchForestSCC() {
     resetVisited();
 
     std::set<int> SCC;
-    int startSize = postorder.size() - 1;
-    for (int i = startSize; i >= 0; i--) {
+    unsigned int startSize = postorder.size() - 1;
+    for (unsigned int i = startSize; i >= 0; i--) {
         SCC.clear();
         if (!isVisited(postorder.at(i))) {
             depthFirstSearchSCC(postorder.at(i), SCC);
@@ -179,6 +179,8 @@ std::set<int> Graph::findRevAdjacencyList(int rule) {
             return itr->second;
         }
     }
+    std::set<int> notReached;
+    return notReached;
 }
 
 std::set<int> Graph::findAdjacencyList(int rule) {
@@ -188,6 +190,8 @@ std::set<int> Graph::findAdjacencyList(int rule) {
             return itr->second;
         }
     }
+    std::set<int> notReached;
+    return notReached;
 }
 
 std::vector<int> Graph::getPostorder() {

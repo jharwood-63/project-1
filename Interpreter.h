@@ -32,7 +32,7 @@ private:
     bool isSelfDependent(int indexOfRule);
 
     void toString(Predicate* query, Relation* relation);
-    void toString(Rule* rule, int ruleIndex);
+    void toString(Rule* rule);
     std::string sccToString(std::set<int> SCC);
 public:
     Interpreter(DatalogProgram* datalogProgram, Database* database);

@@ -157,6 +157,13 @@ void Interpreter::evaluateRules() {
                 } while (changes != 0);
             }
         }
+        else {
+            do {
+                changes = 0;
+                changes += evaluateRule(currSCC);
+                passes++;
+            } while (changes != 0);
+        }
         std::cout << passes << " passes: " << currSCCName << "\n";
     }
     std::cout << "\n";
@@ -169,10 +176,9 @@ int Interpreter::evaluateRule(std::set<int> currSCC) {
     std::vector<Rule*> rules = datalogProgram->rules;
     std::vector<Predicate *> schemes = datalogProgram->schemes;
     std::vector<Relation *> interResults;
-    bool printed = false;
 
     for (int node : currSCC) {
-        toString(rules.at(node), node);
+        toString(rules.at(node));
         int size = rules.at(node)->getBodyPredicateSize();
         std::string ruleName = rules.at(node)->getHeadPredicate()->getId();
         //evaluate predicates on the right side of the rule
@@ -291,11 +297,13 @@ bool Interpreter::checkAllConst(Predicate* query) {
 bool Interpreter::isSelfDependent(int indexOfRule) {
     //only works for SCC with one rule
     std::string headPredicate = datalogProgram->rules.at(indexOfRule)->getHeadPredicate()->getId();
-    std::string bodyPredicate = datalogProgram->rules.at(indexOfRule)->getBodyPredicate(0)->getId();
-    if (headPredicate == bodyPredicate)
-        return true;
-    else
-        return false;
+    int bodyPredicateSize = datalogProgram->rules.at(indexOfRule)->getBodyPredicateSize();
+    for (int i = 0; i < bodyPredicateSize; i++) {
+        std::string bodyPredicate = datalogProgram->rules.at(indexOfRule)->getBodyPredicate(i)->getId();
+        if (headPredicate == bodyPredicate)
+            return true;
+    }
+    return false;
 }
 
 void Interpreter::toString(Predicate *query, Relation *relation) {
@@ -313,7 +321,7 @@ void Interpreter::toString(Predicate *query, Relation *relation) {
 
 }
 
-void Interpreter::toString(Rule* rule, int ruleIndex) {
+void Interpreter::toString(Rule* rule) {
     Predicate* headPredicate = rule->getHeadPredicate();
     int headParamSize = headPredicate->getSize();
     std::cout << headPredicate->getId() << "(";
